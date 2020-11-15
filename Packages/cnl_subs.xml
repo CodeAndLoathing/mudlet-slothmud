@@ -31,7 +31,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>acrid orange potion( \[\d+\])?($)</string>
+					<string>acrid orange potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -51,7 +51,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>amethyst potion( \[\d+\])?($)</string>
+					<string>amethyst potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -71,7 +71,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>aquamarine potion( \[\d+\])?($)</string>
+					<string>aquamarine potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -91,7 +91,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>basin of balms 2x( \[\d+\])?($)</string>
+					<string>basin of balms 2x( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -111,7 +111,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>beaker of glowing green liquid( \[\d+\])?($)</string>
+					<string>beaker of glowing green liquid( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -131,7 +131,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>beaker of milky blue liquid( \[\d+\])?($)</string>
+					<string>beaker of milky blue liquid( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -151,7 +151,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>beaker of bubbling orange liquid( \[\d+\])?($)</string>
+					<string>beaker of bubbling orange liquid( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -171,7 +171,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>black chalice( \[\d+\])?($)</string>
+					<string>black chalice( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -191,7 +191,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>black heart jewel( \[\d+\])?($)</string>
+					<string>black heart jewel( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -211,7 +211,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>black potion with a red glowing center( \[\d+\])?($)</string>
+					<string>black potion with a red glowing center( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -231,7 +231,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>blood red potion( \[\d+\])?($)</string>
+					<string>blood red potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -251,7 +251,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>blue-green potion( \[\d+\])?($)</string>
+					<string>blue-green potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -271,7 +271,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>bright blue potion( \[\d+\])?($)</string>
+					<string>bright blue potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -291,7 +291,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>bright orange potion( \[\d+\])?($)</string>
+					<string>bright orange potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -311,7 +311,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>brown misty potion( \[\d+\])?($)</string>
+					<string>brown misty potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -331,7 +331,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>bubbling green potion( \[\d+\])?($)</string>
+					<string>bubbling green potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -351,7 +351,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>bubbling maroon potion( \[\d+\])?($)</string>
+					<string>bubbling maroon potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -371,7 +371,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>bubbling violet potion( \[\d+\])?($)</string>
+					<string>bubbling violet potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -391,7 +391,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>cerise potion( \[\d+\])?($)</string>
+					<string>cerise potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -411,7 +411,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>chartreuse potion( \[\d+\])?($)</string>
+					<string>chartreuse potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -431,7 +431,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>chilled black potion( \[\d+\])?($)</string>
+					<string>chilled black potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -451,7 +451,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>chocolate potion( \[\d+\])?($)</string>
+					<string>chocolate potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -471,7 +471,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>clear blue potion( \[\d+\])?($)</string>
+					<string>clear blue potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -491,7 +491,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>clear potion with a lot of dirt sediment ( \[\d+\])?($)</string>
+					<string>clear potion with a lot of dirt sediment ( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -511,7 +511,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>clear white potion( \[\d+\])?($)</string>
+					<string>clear white potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -531,7 +531,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>cloudy purple potion( \[\d+\])?($)</string>
+					<string>cloudy purple potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -551,7 +551,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>cloudy red potion( \[\d+\])?($)</string>
+					<string>cloudy red potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -571,7 +571,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>coconut of abrasive draught( \[\d+\])?($)</string>
+					<string>coconut of abrasive draught( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -591,7 +591,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>coconut of analgesic drought( \[\d+\])?($)</string>
+					<string>coconut of analgesic drought( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -611,7 +611,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>coconut of emetic draught( \[\d+\])?($)</string>
+					<string>coconut of emetic draught( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -631,7 +631,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>coconut of invigorating draught( \[\d+\])?($)</string>
+					<string>coconut of invigorating draught( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -651,7 +651,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>coconut of soothing draught( \[\d+\])?($)</string>
+					<string>coconut of soothing draught( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -671,7 +671,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>cold blue potion( \[\d+\])?($)</string>
+					<string>cold blue potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -691,7 +691,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>creamy pink potion( \[\d+\])?($)</string>
+					<string>creamy pink potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -711,7 +711,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>dark yellow potion( \[\d+\])?($)</string>
+					<string>dark yellow potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -731,7 +731,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>deep blue potion( \[\d+\])?($)</string>
+					<string>deep blue potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -751,7 +751,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>deep purple potion( \[\d+\])?($)</string>
+					<string>deep purple potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -771,7 +771,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>dogs head( \[\d+\])?($)</string>
+					<string>dogs head( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -791,7 +791,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>drop of skunk spray( \[\d+\])?($)</string>
+					<string>drop of skunk spray( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -811,7 +811,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>dull copper potion( \[\d+\])?($)</string>
+					<string>dull copper potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -831,7 +831,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>dull gold potion( \[\d+\])?($)</string>
+					<string>dull gold potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -851,7 +851,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>dull grey potion( \[\d+\])?($)</string>
+					<string>dull grey potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -871,7 +871,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>effervescent potion( \[\d+\])?($)</string>
+					<string>effervescent potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -891,7 +891,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>elixir of vitality( \[\d+\])?($)</string>
+					<string>elixir of vitality( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -911,7 +911,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>flask full of mist( \[\d+\])?($)</string>
+					<string>flask full of mist( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -931,7 +931,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>flask of holy water( \[\d+\])?($)</string>
+					<string>flask of holy water( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -951,7 +951,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>flask of human blood( \[\d+\])?($)</string>
+					<string>flask of human blood( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -971,7 +971,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>flask of perfume( \[\d+\])?($)</string>
+					<string>flask of perfume( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -991,7 +991,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>flask of transparent liquid( \[\d+\])?($)</string>
+					<string>flask of transparent liquid( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1011,7 +1011,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>flecked gold potion( \[\d+\])?($)</string>
+					<string>flecked gold potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1031,7 +1031,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>frothy violet potion( \[\d+\])?($)</string>
+					<string>frothy violet potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1051,7 +1051,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>glimmering green potion( \[\d+\])?($)</string>
+					<string>glimmering green potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1071,7 +1071,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>glowing golden potion( \[\d+\])?($)</string>
+					<string>glowing golden potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1091,7 +1091,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>grainy black potion( \[\d+\])?($)</string>
+					<string>grainy black potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1111,7 +1111,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>greasy vial( \[\d+\])?($)</string>
+					<string>greasy vial( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1131,7 +1131,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>green glass jar of bubbly fluids( \[\d+\])?($)</string>
+					<string>green glass jar of bubbly fluids( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1151,7 +1151,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>green glass jar of cloudy liquid( \[\d+\])?($)</string>
+					<string>green glass jar of cloudy liquid( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1171,7 +1171,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>green glass jar of glowing liquid( \[\d+\])?($)</string>
+					<string>green glass jar of glowing liquid( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1191,7 +1191,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>green glass jar of milky liquid( \[\d+\])?($)</string>
+					<string>green glass jar of milky liquid( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1211,7 +1211,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>green glass jar of oil( \[\d+\])?($)</string>
+					<string>green glass jar of oil( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1231,7 +1231,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>green glass jar of roiling liquid( \[\d+\])?($)</string>
+					<string>green glass jar of roiling liquid( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1251,7 +1251,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>green glass jar of viscous goo( \[\d+\])?($)</string>
+					<string>green glass jar of viscous goo( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1271,7 +1271,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>green potion( \[\d+\])?($)</string>
+					<string>green potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1291,7 +1291,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>hissing blue potion( \[\d+\])?($)</string>
+					<string>hissing blue potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1311,7 +1311,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>holy grail( \[\d+\])?($)</string>
+					<string>holy grail( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1331,7 +1331,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>matte-black potion( \[\d+\])?($)</string>
+					<string>matte-black potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1351,7 +1351,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>metallic red potion( \[\d+\])?($)</string>
+					<string>metallic red potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1371,7 +1371,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>midnight blue potion( \[\d+\])?($)</string>
+					<string>midnight blue potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1391,7 +1391,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>milky lavender potion( \[\d+\])?($)</string>
+					<string>milky lavender potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1411,7 +1411,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>milky white potion( \[\d+\])?($)</string>
+					<string>milky white potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1431,7 +1431,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>moldy orange potion( \[\d+\])?($)</string>
+					<string>moldy orange potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1451,7 +1451,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>mutap( \[\d+\])?($)</string>
+					<string>mutap( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1471,7 +1471,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>navy blue potion( \[\d+\])?($)</string>
+					<string>navy blue potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1491,7 +1491,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>olive potion( \[\d+\])?($)</string>
+					<string>olive potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1511,7 +1511,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>orange potion( \[\d+\])?($)</string>
+					<string>orange potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1531,7 +1531,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>pale purple potion( \[\d+\])?($)</string>
+					<string>pale purple potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1551,7 +1551,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>pale rose potion( \[\d+\])?($)</string>
+					<string>pale rose potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1571,7 +1571,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>pale violet potion( \[\d+\])?($)</string>
+					<string>pale violet potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1591,7 +1591,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>pearlescent potion( \[\d+\])?($)</string>
+					<string>pearlescent potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1611,7 +1611,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>phial of dragon fire( \[\d+\])?($)</string>
+					<string>phial of dragon fire( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1631,7 +1631,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion crackling with magical energy( \[\d+\])?($)</string>
+					<string>potion crackling with magical energy( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1651,7 +1651,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of accuracy( \[\d+\])?($)</string>
+					<string>potion of accuracy( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1671,7 +1671,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of desperation( \[\d+\])?($)</string>
+					<string>potion of desperation( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1691,7 +1691,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of destruction( \[\d+\])?($)</string>
+					<string>potion of destruction( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1711,7 +1711,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of endurance( \[\d+\])?($)</string>
+					<string>potion of endurance( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1731,7 +1731,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of flames( \[\d+\])?($)</string>
+					<string>potion of flames( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1751,7 +1751,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of insight( \[\d+\])?($)</string>
+					<string>potion of insight( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1771,7 +1771,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of knitting( \[\d+\])?($)</string>
+					<string>potion of knitting( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1791,7 +1791,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of legendary memory( \[\d+\])?($)</string>
+					<string>potion of legendary memory( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1811,7 +1811,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of lesser sanctuary( \[\d+\])?($)</string>
+					<string>potion of lesser sanctuary( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1831,7 +1831,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of pure darkness( \[\d+\])?($)</string>
+					<string>potion of pure darkness( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1851,7 +1851,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of refreshment( \[\d+\])?($)</string>
+					<string>potion of refreshment( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1871,7 +1871,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of speed( \[\d+\])?($)</string>
+					<string>potion of speed( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1891,7 +1891,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of stones( \[\d+\])?($)</string>
+					<string>potion of stones( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1911,7 +1911,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of the essence of a mind flayer( \[\d+\])?($)</string>
+					<string>potion of the essence of a mind flayer( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1931,7 +1931,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of wispy prayers( \[\d+\])?($)</string>
+					<string>potion of wispy prayers( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1951,7 +1951,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>potion of youth( \[\d+\])?($)</string>
+					<string>potion of youth( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1971,7 +1971,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>pungent indigo potion( \[\d+\])?($)</string>
+					<string>pungent indigo potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -1991,7 +1991,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>purple potion( \[\d+\])?($)</string>
+					<string>purple potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2011,7 +2011,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>radiant white potion( \[\d+\])?($)</string>
+					<string>radiant white potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2031,7 +2031,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>red potion( \[\d+\])?($)</string>
+					<string>red potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2051,7 +2051,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>roiling blue potion( \[\d+\])?($)</string>
+					<string>roiling blue potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2071,7 +2071,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>royal jelly( \[\d+\])?($)</string>
+					<string>royal jelly( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2091,7 +2091,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>ruby red potion( \[\d+\])?($)</string>
+					<string>ruby red potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2111,7 +2111,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>russet potion( \[\d+\])?($)</string>
+					<string>russet potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2131,7 +2131,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>rusty red potion( \[\d+\])?($)</string>
+					<string>rusty red potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2151,7 +2151,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>sea-green potion( \[\d+\])?($)</string>
+					<string>sea-green potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2171,7 +2171,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>shiny golden potion( \[\d+\])?($)</string>
+					<string>shiny golden potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2191,7 +2191,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>silver potion( \[\d+\])?($)</string>
+					<string>silver potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2211,7 +2211,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>slate-grey potion( \[\d+\])?($)</string>
+					<string>slate-grey potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2231,7 +2231,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>sloshing blue potion( \[\d+\])?($)</string>
+					<string>sloshing blue potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2251,7 +2251,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>smoky green potion( \[\d+\])?($)</string>
+					<string>smoky green potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2271,7 +2271,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>sparking yellow potion( \[\d+\])?($)</string>
+					<string>sparking yellow potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2291,7 +2291,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>sparkling blue potion( \[\d+\])?($)</string>
+					<string>sparkling blue potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2311,7 +2311,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>sparkling green( \[\d+\])?($)</string>
+					<string>sparkling green( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2331,7 +2331,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>sparkling vial( \[\d+\])?($)</string>
+					<string>sparkling vial( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2351,7 +2351,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>steaming black potion( \[\d+\])?($)</string>
+					<string>steaming black potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2371,7 +2371,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>stree( \[\d+\])?($)</string>
+					<string>stree( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2391,7 +2391,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>translucent purple potion( \[\d+\])?($)</string>
+					<string>translucent purple potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2411,7 +2411,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>turquoise potion( \[\d+\])?($)</string>
+					<string>turquoise potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2431,7 +2431,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>vaporous white potion( \[\d+\])?($)</string>
+					<string>vaporous white potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2451,7 +2451,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>vial of distilled alcohol( \[\d+\])?($)</string>
+					<string>vial of distilled alcohol( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2471,7 +2471,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>vial of ichor( \[\d+\])?($)</string>
+					<string>vial of ichor( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2491,7 +2491,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>vial of salty sea water( \[\d+\])?($)</string>
+					<string>vial of salty sea water( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2511,7 +2511,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>viscous purple potion( \[\d+\])?($)</string>
+					<string>viscous purple potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2531,7 +2531,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>warm coral potion( \[\d+\])?($)</string>
+					<string>warm coral potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -2551,7 +2551,7 @@
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>yellow potion( \[\d+\])?($)</string>
+					<string>yellow potion( \[\d+\])?(\.\.It glows violet!)?$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
