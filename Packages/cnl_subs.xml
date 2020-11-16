@@ -2577,7 +2577,7 @@ function cnl_subs.append(text)
   selectSection(string.len(line),0)     -- select end of the line
   setFgColor(unpack(fg))                
   replace("  ("..text..")")
-  setFgColor(r,g,b)
+  if (r and g and b) then setFgColor(r,g,b) end
 end</script>
 			<eventHandlerList />
 		</Script>

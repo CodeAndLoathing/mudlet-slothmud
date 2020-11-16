@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<TriggerPackage>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Identify</name>
+			<script>-- create a temp trigger that will capture all the contents of the Identify
+cnl_db.createCaptureIdTrigger()</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>You feel informed:</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>3</integer>
+			</regexCodePropertyList>
+		</Trigger>
+	</TriggerPackage>
+	<TimerPackage />
+	<AliasPackage />
+	<ActionPackage />
+	<ScriptPackage>
+		<Script isActive="yes" isFolder="no">
+			<name>cnl_db</name>
+			<packageName></packageName>
+			<script>-- Make sure an object cnl_db exists or create a new empty object... or table?
+cnl_db = cnl_db or {}
+
+cnl_db.db = db:create("cnl_db",
+  {
+    obj_id = {raw = ""}
+  })
+
+
+
+
+-- Make sure we have a database to capture all the things
+-- @todo
+
+-- this function is called by a trigger if we see "You feel informed:" in the mud
+-- it creates a new temp trigger to capture all the content of the Identify
+function cnl_db.createCaptureIdTrigger()
+  -- if we already have a temp trigger for capturing Identify text, kill it
+  if cnl_db.trigCaptureId then killTrigger(cnl_db.trigCaptureId) end
+  
+  -- init a variable to record multiple lines
+  cnl_db.LinesId = {}
+   
+  -- create the temp trigger. for safety, make it self terminate if it runs for 100+ lines
+  cnl_db.trigCaptureId = tempRegexTrigger("^(.*)$", cnl_db.captureIdentify, 100)
+end
+
+function cnl_db.captureIdentify()
+  -- stop capturing when we get a blank line back
+  if (line == nil or line == "") then 
+    killTrigger(cnl_db.trigCaptureId)
+    
+    db:add(cnl_db.db.obj_id, {raw = (table.concat(cnl_db.LinesId,'\n'))})
+    
+    
+  -- otherwise keep capturing
+  else
+     table.insert(cnl_db.LinesId,line)
+  end
+end
+
+
+
+</script>
+			<eventHandlerList />
+		</Script>
+	</ScriptPackage>
+	<KeyPackage />
+	<HelpPackage>
+		<helpURL></helpURL>
+	</HelpPackage>
+</MudletPackage>
