@@ -50,7 +50,7 @@ I have made the following minor changes:
 
 5) Change the end of line delimiter
 
-    Some of the special exists on the map require you to have the end of line delimiter set to ; instead of ;;
+    Some of the special exits on the map require you to have the end of line delimiter set to ; instead of ;;
     If you want speedwalk to work with these special exits go to Options > Preferences > Input Line
     Change command seperate to just ; instead of ;;
 
