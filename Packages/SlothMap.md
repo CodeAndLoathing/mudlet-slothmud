@@ -20,6 +20,8 @@ I have made the following minor changes:
 
 ## Install Instruction
 0) Download the SlothMap.mpackage file and the sloth-map.dat file.
+    * [SlothMap.mpackage](https://app.box.com/s/il2lpk701m2u2qwykgox6lxigkr4t4me)
+    * [sloth-map.dat](https://app.box.com/s/0mica9lo2dur7pnbvdeydp2zkuc3jew1)
 
 1) Enable MSDP in your profile
 
