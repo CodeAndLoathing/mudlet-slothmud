@@ -8,7 +8,7 @@ The goal of the repackaging is to make it easier for folks to install by includi
 
 ## Description 
 
-This package display your current position on the map using MSDP variables to update it "live" as you move about. 
+This package displays your current position on the map using MSDP variables to update it "live" as you move about. 
 
 This is a *read-only script* and doesn't include the functions to map new rooms, so you will have to preload it with Bandit/Shatterhand's provided map data from [here](http://www.slothmud.org/forum//viewtopic.php?f=39&t=4970).
 
@@ -36,7 +36,7 @@ I have made the following minor changes:
     The Generic Mapper is included by default on all new Mudlet profiles but is not a good option for SlothMud and may interfere with this script. 
 
     Go to Package Manager > Package Manager
-    
+
     Select generic_mapper, click uninstall.
 
 3) Download & install the SlothMap package
