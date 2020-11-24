@@ -36,16 +36,19 @@ I have made the following minor changes:
     The Generic Mapper is included by default on all new Mudlet profiles but is not a good option for SlothMud and may interfere with this script. 
 
     Go to Package Manager > Package Manager
+    
     Select generic_mapper, click uninstall.
 
 3) Download & install the SlothMap package
 
     Go to Package Manager > Package Manager
+
     Click install, browse to where you downloaded SlothMap.mpackage and install.
     
 4) Download & load the SlothMap map data
 
     Go to settings > Mapper > Press to Choose file and Load
+
     Browse to where you downloaded sloth-map.dat and load. 
 
 5) Change the end of line delimiter
