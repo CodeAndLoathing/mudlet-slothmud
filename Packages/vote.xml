@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<TriggerPackage>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>OnConnect</name>
+			<script>vote.checkLastVoted()</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>Welcome to the land of SlothMUD. May your visit here be... Interesting.</string>
+				<string>Reconnecting.</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>3</integer>
+				<integer>3</integer>
+			</regexCodePropertyList>
+		</Trigger>
+	</TriggerPackage>
+	<TimerPackage />
+	<AliasPackage />
+	<ActionPackage />
+	<ScriptPackage>
+		<Script isActive="yes" isFolder="no">
+			<name>vote</name>
+			<packageName></packageName>
+			<script>-- SlothMUD Vote Helper --------------------------------------------------------
+--   Keeps track of when you last voted (at least if you launch from mudlet) 
+--   and reminds you to vote if it's time to vote again @ sign-in
+
+vote = vote or {} -- a table to act as a bag to stuff things into. I guess. Lua...
+
+-- "Constants"
+vote.MODULE_NAME = "vote"
+vote.SAVE_FILENAME = "vote.last"
+vote.VOTING_SITES = {
+  tms = {
+    name = "Top Mud Sites",
+    url = "http://www.topmudsites.com/vote-Splork.html",
+    duration = 12*60*60, -- seconds required between vote attempts. ie 12 hours worth
+  }
+}
+vote.DURATION_BUFFER = 3*60 -- seconds after duration expired before valid for prompting 
+
+
+-- display debug/information messages to screen in consistent manner
+function vote.echo(message)
+  cecho("&lt;orange_red&gt;[ vote ]  - &lt;steel_blue&gt;"..message.."\n")
+end
+
+-- return where to save last voted record depending on whether installed as module or package
+function vote.getLastVotedPath()
+  return (getModulePath(vote.MODULE_NAME) or getMudletHomeDir()):gsub("/vote[.]xml$","").."/"..vote.SAVE_FILENAME  
+end
+
+-- check when last voted
+function vote.checkLastVoted()
+
+  local voting_sites = vote.VOTING_SITES
+  local file_path = vote.getLastVotedPath()
+  if io.exists(file_path) then
+    table.load(file_path, voting_sites)
+  end
+  
+  for site_key,site in pairs(voting_sites) do
+    local current_time = os.time()
+    
+    if site.last_voted == nil or site.last_voted + site.duration + vote.DURATION_BUFFER &lt; current_time then
+      local delta = "FOREVER"
+      if site.last_voted then
+        delta = math.floor((os.time() - site.last_voted) / 60 / 60) .. " hours"
+      end
+      -- this function is buggy and truncates leading spaces unlike cecho
+      cechoLink([[&lt;lime_green&gt;
+
+|              VV\    VV\  OOOOOO\  TTTTTTTT\ EEEEEEEE\ !!\  
+|              VV |   VV |OO  __OO\ \__TT  __|EE  _____|!! | 
+|              VV |   VV |OO /  OO |   TT |   EE |      !! | 
+|              \VV\  VV  |OO |  OO |   TT |   EEEEE\    !! | 
+|               \VV\VV  / OO |  OO |   TT |   EE  __|   \__| 
+|                \VVV  /  OO |  OO |   TT |   EE |           
+|                 \V  /    OOOOOO  |   TT |   EEEEEEEE\ !!\  
+|                  \_/     \______/    \__|   \________|\__| 
+|
+|                     &gt;&gt;&gt; &lt;yellow&gt;Click here to vote now&lt;lime_green&gt; &lt;&lt;&lt;
+|
+|   It has been more than &lt;green&gt; ]]..delta..[[ &lt;lime_green&gt; since you last voted at &lt;green&gt;]]..site.name..[[&lt;lime_green&gt;. 
+      ]],[[vote.launchWindow("]]..site_key..[[")]],"VOTE! VOTE!",true)
+    end 
+  end
+end
+
+function vote.launchWindow(site_key)
+  local voting_sites = vote.VOTING_SITES
+  local file_path = vote.getLastVotedPath()
+  if io.exists(file_path) then
+    table.load(file_path, voting_sites)
+  end
+  openUrl(voting_sites[site_key].url)
+  voting_sites[site_key].last_voted = os.time()
+  table.save(file_path,voting_sites)
+end
+
+vote.echo("Will use:"..vote.getLastVotedPath())</script>
+			<eventHandlerList />
+		</Script>
+	</ScriptPackage>
+	<KeyPackage />
+	<HelpPackage>
+		<helpURL></helpURL>
+	</HelpPackage>
+</MudletPackage>
