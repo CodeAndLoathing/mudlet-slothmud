@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<TriggerPackage>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>OnConnect</name>
+			<script>win_group.enableGroupMsdp()
+</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>Welcome to the land of SlothMUD. May your visit here be... Interesting.</string>
+				<string>Reconnecting.</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>3</integer>
+				<integer>3</integer>
+			</regexCodePropertyList>
+		</Trigger>
+	</TriggerPackage>
+	<TimerPackage>
+		<Timer isActive="no" isFolder="no" isTempTimer="no" isOffsetTimer="no">
+			<name>test msdp.GROUP data</name>
+			<script>-- test data
+
+msdp = msdp or {}
+msdp.GROUP = {
+    MEMBER0 = {
+      MANA = "595",
+      POSITION = "Back",
+      MAX_MOVES = "217",
+      MAX_HITPOINTS = "803",
+      MOVES = "193",
+      CLASS = "Ne",
+      LEVELS = "4.27",
+      MAX_MANA = "595",
+      STATUS = "Standing",
+      HITPOINTS = "803",
+      NAME = "Dorp"
+    },
+    MEMBER3 = {
+      MANA = "544",
+      POSITION = "Front",
+      MAX_MOVES = "375",
+      MAX_HITPOINTS = "1148",
+      MOVES = "363",
+      CLASS = "Ne",
+      LEVELS = "9.40",
+      MAX_MANA = "1054",
+      STATUS = "Fighting",
+      HITPOINTS = "1148",
+      NAME = "Beatrix"
+    },
+    MEMBER6 = {
+      MANA = "401",
+      POSITION = "Point",
+      MAX_MOVES = "404",
+      MAX_HITPOINTS = "1464",
+      MOVES = "357",
+      CLASS = "Wa",
+      LEVELS = "8.36",
+      MAX_MANA = "503",
+      STATUS = "Fighting",
+      HITPOINTS = math.random(-50,1500),
+      NAME = "Roselya"
+    },
+    MEMBER4 = {
+      MANA = "576",
+      POSITION = "Back",
+      MAX_MOVES = "378",
+      MAX_HITPOINTS = "1147",
+      MOVES = "352",
+      CLASS = "Dr",
+      LEVELS = "8.39",
+      MAX_MANA = "876",
+      STATUS = "Fighting",
+      HITPOINTS = "1147",
+      NAME = "Fandral"
+    },
+    MEMBER7 = {
+      MANA = "649",
+      POSITION = "Front",
+      MAX_MOVES = "551",
+      MAX_HITPOINTS = "1836",
+      MOVES = "543",
+      CLASS = "Wa",
+      LEVELS = "9.40",
+      MAX_MANA = "820",
+      STATUS = "Standing",
+      HITPOINTS = "1836",
+      NAME = "Stun"
+    },
+    MEMBER1 = {
+      MANA = "584",
+      POSITION = "Back",
+      MAX_MOVES = "234",
+      MAX_HITPOINTS = "774",
+      MOVES = "234",
+      CLASS = "Ne",
+      LEVELS = "0.39",
+      MAX_MANA = "584",
+      STATUS = "Fighting",
+      HITPOINTS = "774",
+      NAME = "Ninx"
+    },
+    MEMBER9 = {
+      MANA = "538",
+      POSITION = "Leader",
+      MAX_MOVES = "218",
+      MAX_HITPOINTS = "812",
+      MOVES = "192",
+      CLASS = "Cl",
+      LEVELS = "0.39",
+      MAX_MANA = "736",
+      STATUS = "Fighting",
+      HITPOINTS = "812",
+      NAME = "Toxis"
+    },
+    MEMBER8 = {
+      MANA = "474",
+      POSITION = "Back",
+      MAX_MOVES = "259",
+      MAX_HITPOINTS = "759",
+      MOVES = "238",
+      CLASS = "Ma",
+      LEVELS = "4.32",
+      MAX_MANA = "617",
+      STATUS = "Fighting",
+      HITPOINTS = "759",
+      NAME = "Fuligin"
+    },
+    MEMBER5 = {
+      MANA = "731",
+      POSITION = "Front",
+      MAX_MOVES = "530",
+      MAX_HITPOINTS = "1547",
+      MOVES = "530",
+      CLASS = "Mo",
+      LEVELS = "9.40",
+      MAX_MANA = "731",
+      STATUS = "Fighting",
+      HITPOINTS = "1547",
+      NAME = "Belrath"
+    },
+    MEMBER2 = {
+      MANA = "571",
+      POSITION = "Front",
+      MAX_MOVES = "414",
+      MAX_HITPOINTS = "1307",
+      MOVES = "398",
+      CLASS = "Wa",
+      LEVELS = "8.33",
+      MAX_MANA = "571",
+      STATUS = "Dead",
+      HITPOINTS = "-1307",
+      NAME = "Braze"
+    },
+  }
+raiseEvent("msdp.GROUP")</script>
+			<command></command>
+			<packageName></packageName>
+			<time>00:00:05.000</time>
+		</Timer>
+	</TimerPackage>
+	<AliasPackage />
+	<ActionPackage />
+	<ScriptPackage>
+		<Script isActive="yes" isFolder="no">
+			<name>win_group</name>
+			<packageName></packageName>
+			<script>-- This script creates an Adjustable Container window named "win_group"
+-- see: https://www.mudlet.org/geyser/files/geyser/AdjustableContainer.html
+
+-- If you closed the window and want it to come back
+--    win_group:show()
+--    or lua win_group:show() from console input line
+
+-- If you locked the container and want to be able to move/drag/resize it again
+--    win_group:unlockContainer() 
+--    or lua win_group:unlockContainer() from console input
+
+-- If you want to lock the container in place so you don't move/drag/resize it on accident
+--    win_group:lockContainer() 
+--    or lua win_group:lockContainer() from console_input
+
+win_group   = win_group or Adjustable.Container:new({
+  name          = "win_group",
+  y             = "0%",
+  height        = "10%",
+  autoload      = false,
+  adjLabelstyle = "border:1px solid #458588;border-radius: 4px;background-color:black;",
+  titleText     = "Group"
+})
+
+-- Put a console inside the window to write text to
+win_group_con_all = Geyser.MiniConsole:new({
+  name          = "win_group_con_all",
+  x             = 0,
+  y             = 0,
+  autoWrap      = false,
+  scrollBar     = false,
+  width         = "100%",
+  height        = "100%",
+}, win_group)
+
+
+win_group_con_all:setColor("black")             -- set console background color
+setMiniConsoleFontSize("win_group_con_all",9)   -- set console font size </script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>enableGroupMsdp</name>
+			<packageName></packageName>
+			<script>win_group = win_group or {}
+
+-- register with Sloth that we want it to send us msdp.GROUP and CHARACTER_NAME
+function win_group.enableGroupMsdp()
+  if not msdp then
+    cecho("\n")
+    cecho("&lt;firebrick&gt;[&lt;red&gt;WARN&lt;firebrick&gt;]&lt;reset&gt; MSDP does not appear to be enabled on this Mudlet profile.\n")
+    cecho("       To enable: From Mudlet menu --&gt; Options --&gt; Preferences: Enable MSDP (check box)\n")
+    cecho("       You may need to reconnect Mudlet after enabling.\n")
+  end
+  sendMSDP("REPORT","GROUP")
+  sendMSDP("REPORT","CHARACTER_NAME")
+end</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>msdpGroupWinHandler</name>
+			<packageName></packageName>
+			<script>-- each time Sloth sends an msdp.GROUP update, this function will be called to update the window 
+function msdpGroupWinHandler()
+
+  -- msdp returns the group members in no order I understand so we'll assign points based on group position to help in sorting
+  sortOrder = {
+    [ [[Point]] ]   = 60, 
+    [ [[Pleader]] ] = 60,
+    [ [[Leader]] ]  = 40, 
+    [ [[Front]] ]   = 20,
+    [ [[Back]] ]    = 0,
+  }
+
+  -- first clear the console since we're about to write the newest status of the group
+  win_group_con_all:clear()
+  
+  lastPos = nil -- used to insert blank lines between point, leader, front back (ie, on position changes)
+  
+  -- iterate through each group member
+  -- (using spairs to sort based on our made up sortOrder points + char levels)
+  for _,v in spairs(msdp.GROUP,function(t,a,b) return (sortOrder[t[b].POSITION] or 0)+tonumber(t[b].LEVELS) &lt;  (sortOrder[t[a].POSITION] or 0)+tonumber(t[a].LEVELS) end) do  
+    
+    -- the following is not how i would normally do this but to make it self contained and easy to read
+    
+    -- char name
+    local name = string.format("%-12s",v.NAME, 12)
+    -- highlight our own name
+    if v.NAME == msdp.CHARACTER_NAME then
+     name = "&lt;:dark_slate_grey&gt;"..name
+    end
+    
+    -- hp string
+    local hp = string.format("%5s",v.HITPOINTS,5)    
+    local hpR = tonumber(v.HITPOINTS) / tonumber(v.MAX_HITPOINTS)  
+    local hpColor
+    if hpR &lt; .2 then hpColor = "&lt;red&gt;"
+    elseif hpR &lt; .8 then hpColor = "&lt;orange&gt;"
+    else hpColor = "&lt;green&gt;"
+    end
+    
+    -- ma string
+    local ma = string.format("%5s",v.MANA,5)
+    local maR = tonumber(v.MANA) / tonumber(v.MAX_MANA)
+    local maColor
+    if maR &lt; .2 then maColor = "&lt;red&gt;"
+    elseif maR &lt; .8 then maColor = "&lt;orange&gt;"
+    else maColor = "&lt;green&gt;"
+    end
+    
+    -- mv string
+    local mv = string.format("%4s",v.MOVES,4)
+    local mvR = tonumber(v.MOVES) / tonumber(v.MAX_MOVES)
+    local mvColor
+    if mvR &lt; .2 then mvColor = "&lt;red&gt;"
+    elseif mvR &lt; .8 then mvColor = "&lt;orange&gt;"
+    else mvColor = "&lt;green&gt;"
+    end
+    
+    -- position string 
+    local pos = string.format("%8s",v.POSITION,8)
+    local seperator = ""
+    if lastPos ~= pos then
+      lastPos = pos
+      seperator = "\n"
+    end
+    
+    -- status, symbol and name color  
+    local symbol = "  "
+    local nameColor = ""
+    local status = string.format("%10s",v.STATUS,10)
+    local statusColor
+    if (v.STATUS == "Standing") then
+      statusColor = "&lt;green&gt;"
+    elseif (v.STATUS == "Fighting") then
+      statusColor = "&lt;orange&gt;"
+    elseif (v.STATUS == "Dead") then
+      statusColor = "&lt;red&gt;"
+      nameColor = "&lt;red&gt;"
+      symbol = "💀"
+    else
+      statusColor = "&lt;red&gt;" -- if leading I want to see all green if moving
+    end
+    
+    -- put it all together to write the line 
+    win_group_con_all:cecho(
+      seperator..
+      symbol..
+      nameColor..
+      name.."&lt;reset&gt;"..
+      hpColor..hp.."&lt;reset&gt;hp   "..
+      maColor..ma.."&lt;reset&gt;ma   "..
+      mvColor..mv.."&lt;reset&gt;mv   "..
+      pos..
+      statusColor..status..
+      "\n"
+    )
+  end
+end</script>
+			<eventHandlerList>
+				<string>msdp.GROUP</string>
+			</eventHandlerList>
+		</Script>
+	</ScriptPackage>
+	<KeyPackage />
+	<HelpPackage>
+		<helpURL></helpURL>
+	</HelpPackage>
+</MudletPackage>
