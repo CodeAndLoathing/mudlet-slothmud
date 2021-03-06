@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<TriggerPackage>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Chat</name>
+			<script>-- starting patterns with \w+ to exclude at least multiname mobs showing up in window
+
+-- format timestamp for message
+local time = os.date("*t")
+local time_string = ("%02d:%02d:%02d"):format(time.hour, time.min, time.sec)
+win_chat_con_all:cecho("&lt;dark_slate_grey&gt;"..time_string.." ")
+
+-- use append to echo the current "chat" line with color preserved 
+selectCurrentLine()
+copy()
+win_chat_con_all:appendBuffer()</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>You gossip-- '</string>
+				<string>^\w+ gossips-- '.+'$</string>
+				<string>You auction-- '</string>
+				<string>^\w+ auctions-- '.+'$</string>
+				<string>You newbie-- '</string>
+				<string>^\w+ newbies-- '.+'$</string>
+				<string>^\w+\[.*\]\&gt; '.+'$</string>
+				<string>You say '</string>
+				<string>^\w+ says '.+'$</string>
+				<string>You tell </string>
+				<string>^\w+ tells you '.+'$</string>
+				<string>You shout '</string>
+				<string>^\w+ shouts '.+'$</string>
+				<string>You yell '</string>
+				<string>^\w+ yells '.+'$</string>
+				<string>You grouptell: '</string>
+				<string>^\w+ -- '</string>
+				<string>^\w+ has joined channel:</string>
+				<string>^\w+ has left this channel:</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>2</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>1</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>1</integer>
+				<integer>1</integer>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+	</TriggerPackage>
+	<TimerPackage>
+		<Timer isActive="no" isFolder="no" isTempTimer="no" isOffsetTimer="no">
+			<name>test chat data</name>
+			<script>-- send test data every 5 seconds
+
+win_chat_con_all:cecho("&lt;cyan&gt;test\n")</script>
+			<command></command>
+			<packageName></packageName>
+			<time>00:00:05.000</time>
+		</Timer>
+	</TimerPackage>
+	<AliasPackage />
+	<ActionPackage />
+	<ScriptPackage>
+		<Script isActive="yes" isFolder="no">
+			<name>win_chat</name>
+			<packageName></packageName>
+			<script>win_chat   = win_chat or Adjustable.Container:new({
+  name          = "win_chat",
+  x             = 0,
+  y             = 0,
+  height        = 100,
+  autoload      = false,
+  adjLabelstyle = [[
+    border:             1px solid #689d6a;
+    border-radius:      5px;
+    background-color:   black;
+  ]],
+  titleText     = "CHANNEL",
+  titleTxtColor = "#689d6a",
+})
+
+win_chat_con_all = Geyser.MiniConsole:new({
+  name          = "win_chat_con_all",
+  x             = 0,
+  y             = 0,
+  autoWrap      = true,
+  scrollBar     = false,
+  width         = "100%",
+  height        = "100%",
+  fontSize      = 9,
+}, win_chat)
+
+win_chat_con_all:setColor("black")
+--win_chat_con_all:setFontSize(9)</script>
+			<eventHandlerList />
+		</Script>
+	</ScriptPackage>
+	<KeyPackage />
+	<HelpPackage>
+		<helpURL></helpURL>
+	</HelpPackage>
+</MudletPackage>
