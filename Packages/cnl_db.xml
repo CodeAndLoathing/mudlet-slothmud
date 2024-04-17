@@ -1,82 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MudletPackage>
 <MudletPackage version="1.001">
-	<TriggerPackage>
-		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-			<name>Identify</name>
-			<script>-- create a temp trigger that will capture all the contents of the Identify
-cnl_db.createCaptureIdTrigger()</script>
-			<triggerType>0</triggerType>
-			<conditonLineDelta>0</conditonLineDelta>
-			<mStayOpen>0</mStayOpen>
-			<mCommand></mCommand>
-			<packageName></packageName>
-			<mFgColor>#ff0000</mFgColor>
-			<mBgColor>#ffff00</mBgColor>
-			<mSoundFile></mSoundFile>
-			<colorTriggerFgColor>#000000</colorTriggerFgColor>
-			<colorTriggerBgColor>#000000</colorTriggerBgColor>
-			<regexCodeList>
-				<string>You feel informed:</string>
-			</regexCodeList>
-			<regexCodePropertyList>
-				<integer>3</integer>
-			</regexCodePropertyList>
-		</Trigger>
-	</TriggerPackage>
+	<TriggerPackage />
 	<TimerPackage />
 	<AliasPackage />
 	<ActionPackage />
 	<ScriptPackage>
 		<Script isActive="yes" isFolder="no">
-			<name>cnl_db</name>
+			<name>init</name>
 			<packageName></packageName>
-			<script>-- Make sure an object cnl_db exists or create a new empty object... or table?
-cnl_db = cnl_db or {}
+			<script>--[[
 
-cnl_db.db = db:create("cnl_db",
-  {
-    obj_id = {raw = ""}
-  })
+  ██████╗███╗   ██╗██╗             ██████╗ ██████╗ 
+ ██╔════╝████╗  ██║██║             ██╔══██╗██╔══██╗
+ ██║     ██╔██╗ ██║██║             ██║  ██║██████╔╝
+ ██║     ██║╚██╗██║██║             ██║  ██║██╔══██╗
+ ╚██████╗██║ ╚████║███████╗███████╗██████╔╝██████╔╝
+  ╚═════╝╚═╝  ╚═══╝╚══════╝╚══════╝╚═════╝ ╚═════╝   
 
+               '; drop all tables; --
 
+]]
 
+-- Init ------------------------------------------------------------------------
+cnl_db                  = cnl_db or {}
+cnl_db.data             = cnl_db.data or {}
 
--- Make sure we have a database to capture all the things
--- @todo
+-- Const -------------------------------
+cnl_db.VER              = "2023.6.26"    
+cnl_db.PKG              = "cnl_db"      
 
--- this function is called by a trigger if we see "You feel informed:" in the mud
--- it creates a new temp trigger to capture all the content of the Identify
-function cnl_db.createCaptureIdTrigger()
-  -- if we already have a temp trigger for capturing Identify text, kill it
-  if cnl_db.trigCaptureId then killTrigger(cnl_db.trigCaptureId) end
-  
-  -- init a variable to record multiple lines
-  cnl_db.LinesId = {}
-   
-  -- create the temp trigger. for safety, make it self terminate if it runs for 100+ lines
-  cnl_db.trigCaptureId = tempRegexTrigger("^(.*)$", cnl_db.captureIdentify, 100)
-end
+-- Database ----------------------------
+cnl_db.db               = db:create(cnl_db.PKG,{})
+</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>util</name>
+			<packageName></packageName>
+			<script>u = u or {}
 
-function cnl_db.captureIdentify()
-  -- stop capturing when we get a blank line back
-  if (line == nil or line == "") then 
-    killTrigger(cnl_db.trigCaptureId)
-    
-    db:add(cnl_db.db.obj_id, {raw = (table.concat(cnl_db.LinesId,'\n'))})
-    
-    
-  -- otherwise keep capturing
+function u.getModPath(mod)
+  if getModulePath(mod) then
+    return getModulePath(mod):gsub("/[^/]+$","").."/"
   else
-     table.insert(cnl_db.LinesId,line)
+    return getMudletHomeDir().."/"
   end
 end
 
+function u.loadTable(path,obj,echo)
+  echo = echo == nil or echo -- default is to echo
+  if io.exists(path) then
+    table.load(path, obj)
+    if echo then
+      cecho("💾&lt;green&gt;🠊&lt;reset&gt; "..path.." (read)\n")
+    end
+  else
+    if echo then
+      cecho("💾&lt;gray&gt;?&lt;reset&gt; "..path.." (not found)\n")
+    end
+  end
+end
 
+function u.saveTable(path,obj,echo)
+  echo = echo == nil or echo -- default is to echo
+  table.save(path,obj)
+  if echo then 
+    cecho("💾&lt;red&gt;🠈&lt;reset&gt; "..path.." (save)\n")
+  end
+end
 
 </script>
 			<eventHandlerList />
 		</Script>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>item</name>
+			<packageName></packageName>
+			<script></script>
+			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>_table</name>
+				<packageName></packageName>
+				<script>-- item table
+db:create(cnl_db.db._db_name,{item={
+    vnum="",
+    name="",
+    type="",
+    keyword="",
+    _unique={"vnum"},
+    _index={"name"},
+    _violations = "REPLACE"
+}})
+
+</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>itemUpdate</name>
+				<packageName></packageName>
+				<script>local URL = "http://eq.slothmud.org/?level_wa=&amp;level_th=&amp;level_ma=&amp;level_cl=&amp;level_dr=&amp;level_mo=&amp;level_ba=&amp;level_ne=&amp;level_av=&amp;search=%" 
+
+function cnl_db.itemUpdate()
+  cecho("Downloading full eqlist and loading into database.\n")
+  getHTTP(URL)
+end
+
+function cnl_db.downloadEQListHandler(evt,url,body)
+  if url == URL then cecho("MATCH!!!") end
+  cecho("EQ list downloaded.\n")
+  cecho("Parsing...\n")
+  
+  local body_split = body:split([[&lt;div class="item"&gt;]])
+  local items = {}
+  local mydb = cnl_db.db
+  mydb:_begin()
+  for _,text in pairs(body_split) do
+    local _,_,vnum = rex.find(text,"VNUM: ([\\d]+)")
+    if vnum then
+      local _,_,name    = rex.find(text,"VNUM:\\s+\\d+\"&gt;([^&lt;]+)")
+      local _,_,type    = rex.find(text,"type\"&gt;\\[([^\\]]+)\\]")
+      local _,_,keyword = rex.find(text,"keywords\"&gt;([^&lt;]+)")
+      local item = {}
+      items[vnum]   = item
+      item.name     = name
+      item.type     = type
+      item.keyword  = keyword
+      db:add(mydb.item,{vnum=tonumber(vnum), name=name, type=type, keyword=keyword})
+    end
+  end
+  mydb:_commit()
+  cecho("done.\n")
+end
+cnl_db.downloadEQListHandlerId = cnl_db.downloadEQListHandlerId or 
+  registerAnonymousEventHandler([[sysGetHttpDone]],[[cnl_db.downloadEQListHandler]])
+
+
+function cnl_db.downloadEQListErrorHandler(evt,url,body)
+  if url == URL then cecho("MATCH!!!") end
+  cecho("Error downloading EQ List.\n")
+end
+cnl_db.downloadEQListErrorHandlerId = cnl_db.downloadEQListErrorHandlerId or 
+  registerAnonymousEventHandler([[sysGetHttpError]],[[cnl_db.downloadEQListErrorHandler]])
+</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>itemGet</name>
+				<packageName></packageName>
+				<script>function cnl_db.itemGet(name)
+  return db:fetch(cnl_db.db.item, db:like(cnl_db.db.item.name, name))
+end</script>
+				<eventHandlerList />
+			</Script>
+		</ScriptGroup>
 	</ScriptPackage>
 	<KeyPackage />
 	<HelpPackage>
