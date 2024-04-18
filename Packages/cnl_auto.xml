@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<TriggerPackage>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>You get item</name>
+			<script>--cecho("&lt;ansi_cyan&gt; * trigger You get item\n")
+cnl_auto.getItem(matches[2]:lower())</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^You get (.*) from the corpse of .* that's on the ground[.]$</string>
+				<string>^You deftly snatch (.*)[.]$</string>
+				<string>^You pick up (.*)[.]$</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+				<integer>1</integer>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+	</TriggerPackage>
+	<TimerPackage>
+		<Timer isActive="no" isFolder="no" isTempTimer="no" isOffsetTimer="no">
+			<name>TIMER_EMPTY</name>
+			<script></script>
+			<command></command>
+			<packageName></packageName>
+			<time>00:00:00.000</time>
+		</Timer>
+	</TimerPackage>
+	<AliasPackage>
+		<Alias isActive="yes" isFolder="no">
+			<name>auto</name>
+			<script>local mode = matches[2]
+local args = matches[3]
+
+--display(matches)
+
+cnl_auto.cmd(mode,args)
+</script>
+			<command></command>
+			<packageName></packageName>
+			<regex>^auto(spirit|grab|cons|task|spin|drop|junk)?([+?-]?\s+\S.*)?$</regex>
+		</Alias>
+	</AliasPackage>
+	<ActionPackage>
+		<Action isActive="no" isFolder="no" isPushButton="no" isFlatButton="no" useCustomLayout="no">
+			<name>BUTTON_EMPTY</name>
+			<packageName></packageName>
+			<script></script>
+			<css></css>
+			<commandButtonUp></commandButtonUp>
+			<commandButtonDown></commandButtonDown>
+			<icon></icon>
+			<orientation>1</orientation>
+			<location>0</location>
+			<posX>0</posX>
+			<posY>0</posY>
+			<mButtonState>1</mButtonState>
+			<sizeX>0</sizeX>
+			<sizeY>0</sizeY>
+			<buttonColumn>1</buttonColumn>
+			<buttonRotation>0</buttonRotation>
+		</Action>
+	</ActionPackage>
+	<ScriptPackage>
+		<Script isActive="yes" isFolder="no">
+			<name>init</name>
+			<packageName></packageName>
+			<script>--[[
+
+  ██████╗███╗   ██╗██╗              █████╗ ██╗   ██╗████████╗ ██████╗ 
+ ██╔════╝████╗  ██║██║             ██╔══██╗██║   ██║╚══██╔══╝██╔═══██╗
+ ██║     ██╔██╗ ██║██║             ███████║██║   ██║   ██║   ██║   ██║
+ ██║     ██║╚██╗██║██║             ██╔══██║██║   ██║   ██║   ██║   ██║
+ ╚██████╗██║ ╚████║███████╗███████╗██║  ██║╚██████╔╝   ██║   ╚██████╔╝
+  ╚═════╝╚═╝  ╚═══╝╚══════╝╚══════╝╚═╝  ╚═╝ ╚═════╝    ╚═╝    ╚═════╝ 
+
+  Junking &amp; giving away the wrong item at the speed of triggers (tm).   
+                                                                     
+]]
+
+-- Init ------------------------------------------------------------------------
+cnl_auto                = cnl_auto or {}    -- the golden sack of cnl_auto vars
+-- Const -------------------------------
+cnl_auto.VER            = "2023.7.16"       -- last player cnl_auto
+cnl_auto.PKG            = "cnl_auto"        -- clan symbol</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>util</name>
+			<packageName></packageName>
+			<script>u = u or {}
+cnl_core = cnl_core or {}
+cnl_core.util = cnl_core.util or {}
+cnl_core.util.regEvt = cnl_core.util.regEvt or {}
+
+function u.getModPath(mod)
+  if getModulePath(mod) then
+    return getModulePath(mod):gsub("/[^/]+$","").."/"
+  else
+    return getMudletHomeDir().."/"
+  end
+end
+
+function u.loadTable(path,obj,echo)
+  echo = echo == nil or echo -- default is to echo
+  if io.exists(path) then
+    table.load(path, obj)
+    if echo then
+      cecho("💾&lt;green&gt;🠊&lt;reset&gt; "..path.." (read)\n")
+    end
+  else
+    if echo then
+      cecho("💾&lt;gray&gt;?&lt;reset&gt; "..path.." (not found)\n")
+    end
+  end
+end
+
+function u.saveTable(path,obj,echo)
+  echo = echo == nil or echo -- default is to echo
+  table.save(path,obj)
+  if echo then 
+    cecho("💾&lt;red&gt;🠈&lt;reset&gt; "..path.." (save)\n")
+  end
+end
+
+function u.raiseEvt(evt,args,profile)
+  raiseEvent(evt,args,profile)
+end
+
+function u.regEvt(evt,handler)
+  local handlerId = evt..":"..handler
+
+  if cnl_core.util.regEvt.handlers[handlerId] then
+    killAnonymousEventHandler(cnl_core.util.regEvt.handlers[handlerId])
+  end
+  cnl_core.util.regEvt.handlers[handlerId] = registerAnonymousEventHandler(evt,handler)
+end
+
+function u.textColValue(string,value,enabler,len)
+  local c1,c2,val
+  if enabler ~= nil and not enabler then
+    c1 = "&lt;ansi_light_black&gt;"
+    c2 = "&lt;ansi_light_black&gt;"
+  else
+    c1 = "&lt;ansi_yellow&gt;"
+    if value then c2 = "&lt;ansi_green&gt;"
+    else c2 = "&lt;ansi_red&gt;" end
+  end
+  if value then val = "On" else val = "Off" end
+  return
+    c1..
+    string.format("%-"..len.."s",string)..
+    c2..
+    tostring(val)
+end</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>data</name>
+			<packageName></packageName>
+			<script>-- Init data -------------------------------------------------------------------
+
+cnl_auto.data = cnl_auto.data or {}
+
+-- Path -------------------------------- 
+cnl_auto.filepath       = u.getModPath(cnl_auto.PKG)..cnl_auto.PKG..".%s"
+
+
+
+</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>data.cfg</name>
+			<packageName></packageName>
+			<script>-- Init cfg --------------------------------------------------------------------
+
+cnl_auto.data.cfg = cnl_auto.data.cfg or {
+  path = cnl_auto.filepath:format("cfg"),
+  list = {
+    auto    = true,
+    grab    = true,
+    cons    = true,
+    task    = true,
+    spin    = true,
+    drop    = true,
+    junk    = true,
+    spirit  = true,
+  },
+}
+u.loadTable(cnl_auto.data.cfg.path,cnl_auto.data.cfg.list)</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>data.cons</name>
+			<packageName></packageName>
+			<script>-- Init task --------------------------------------------------------------------
+
+cnl_auto.data.cons = cnl_auto.data.cons or {
+  path = cnl_auto.filepath:format("cons"),
+  list = {},
+}
+u.loadTable(cnl_auto.data.cons.path,cnl_auto.data.cons.list)</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>data.grab</name>
+			<packageName></packageName>
+			<script>-- Init task --------------------------------------------------------------------
+
+cnl_auto.data.grab = cnl_auto.data.grab or {
+  path = cnl_auto.filepath:format("grab"),
+  list = {},
+}
+u.loadTable(cnl_auto.data.grab.path,cnl_auto.data.grab.list)</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>data.task</name>
+			<packageName></packageName>
+			<script>-- Init task --------------------------------------------------------------------
+
+cnl_auto.data.task = cnl_auto.data.task or {
+  path = cnl_auto.filepath:format("task"),
+  list = {},
+}
+u.loadTable(cnl_auto.data.task.path,cnl_auto.data.task.list)</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>data.spin</name>
+			<packageName></packageName>
+			<script>-- Init spin -------------------------------------------------------------------
+
+cnl_auto.data.spin = cnl_auto.data.spin or {
+  path = cnl_auto.filepath:format("spin"),
+  list = {},
+}
+u.loadTable(cnl_auto.data.spin.path,cnl_auto.data.spin.list)</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>data.drop</name>
+			<packageName></packageName>
+			<script>-- Init drop --------------------------------------------------------------------
+
+cnl_auto.data.drop = cnl_auto.data.drop or {
+  path = cnl_auto.filepath:format("drop"),
+  list = {},
+}
+u.loadTable(cnl_auto.data.drop.path,cnl_auto.data.drop.list)</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>data.junk</name>
+			<packageName></packageName>
+			<script>-- Init junk --------------------------------------------------------------------
+
+cnl_auto.data.junk = cnl_auto.data.junk or {
+  path = cnl_auto.filepath:format("junk"),
+  list = {},
+}
+u.loadTable(cnl_auto.data.junk.path,cnl_auto.data.junk.list)</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>getItem</name>
+			<packageName></packageName>
+			<script>function cnl_auto.getItem(item)
+  cecho("&lt;ansi_cyan&gt;["..item.."]")
+  if cnl_auto.data.cfg.list.auto then
+  
+    if
+      item == "gold coins" or                       -- ignore gold (autosplit)
+      rex.find(item,"[(]with|[(][)]socketed")       -- ignore items with rune/clasp (mostly auto clean)
+    then return end
+
+  
+    -- spirit ------------------------------------------------------------------
+    if
+      cnl_auto.data.cfg.list.spirit
+    then
+      cnl_auto.offerItem(item)
+    end
+
+    -- task --------------------------------------------------------------------
+    if
+      cnl_auto.data.cfg.list.task and cnl_auto.data.task.list[item]
+    then
+      local cmd = cnl_auto.data.task.list[item].command
+      local hnd = cnl_auto.data.task.list[item].handles
+      expandAlias(cmd:gsub("$handle",hnd):gsub("$name",item),true)
+  
+    -- spin --------------------------------------------------------------------
+    elseif
+      cnl_auto.data.cfg.list.spin and cnl_auto.data.spin.list[item] and
+      m.am_leader and m.group_count_present &gt; 1
+    then
+      send("spin wheel "..cnl_auto.data.spin.list[item])
+    
+    -- drop --------------------------------------------------------------------
+    elseif
+      cnl_auto.data.cfg.list.drop and cnl_auto.data.drop.list[item]
+    then 
+      send("drop "..cnl_auto.data.drop.list[item])
+    
+    -- junk --------------------------------------------------------------------
+    elseif
+      cnl_auto.data.cfg.list.junk and cnl_auto.data.junk.list[item]
+    then
+      send("junk "..cnl_auto.data.junk.list[item])
+    
+    -- stash -------------------------------------------------------------------
+    else
+      
+    end
+  
+  end
+end</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>offerItem</name>
+			<packageName></packageName>
+			<script>function cnl_auto.offerItem(item)
+
+  cecho("\n")
+  cecho("&lt;red&gt;SPIRIT&lt;cyan&gt;SPIRIT&lt;green&gt;SPIRIT&lt;orange&gt;SPIRIT&lt;purple&gt;SPIRIT\n")
+  --
+  if item:lower() == "a tattered note" then
+    send("offer spirit note")
+  
+  elseif rex.find(item,"^a subdued ") then
+    send("offer spirit subdued")
+    
+  elseif rex.find(item,"^the corpse of ") then
+    send("offer spirit corpse")
+
+  elseif cnl_db then
+    local items = cnl_db.itemGet(item)
+    cecho("&lt;red&gt;[")
+    display(item,items)
+    cecho("&lt;red&gt;]")
+    
+    for _,i in pairs(items) do
+      if item == i.name:lower() then
+        send("offer spirit "..i.keyword:gsub(" ","-"))
+      end
+    end
+    
+  else
+    cecho("&lt;red&gt;*** ERROR: CANNOT FIND CNL_DB!!! ***")
+  
+  end
+  --
+  cecho("&lt;red&gt;SPIRIT&lt;cyan&gt;SPIRIT&lt;green&gt;SPIRIT&lt;orange&gt;SPIRIT&lt;purple&gt;SPIRIT\n")
+end</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>clean</name>
+			<packageName></packageName>
+			<script>function cnl_auto.clean_cleanVars()
+  if cnl_auto.clean_trigId  then killTrigger(cnl_auto.clean_trigId)   end
+  if cnl_auto.clean_trig2Id then killTrigger(cnl_auto.clean_trig2Id)  end
+  if cnl_auto.clean_timerId then killTimer(cnl_auto.clean_timerId)    end
+end
+
+function cnl_auto.clean_timeout()
+  cecho("\n&lt;red&gt;auto clean : timed out.\n")
+  cnl_auto.clean_cleanVars()
+end
+
+function cnl_auto.processInventory()
+  if (not line or line == "" or rex.find(line,"^[&lt;]")) then
+    cnl_auto.clean_cleanVars()
+    cecho("\n&lt;green&gt;auto clean : completed.\n")
+  else
+    local item  = line
+    
+    item = rex.gsub(item,"([.][.](It emits a faint humming sound|It has a soft glowing aura|It glows (violet|red|blue))!)+","")
+    local _,_,count = rex.find(item," [[](\\d+)\]$")
+    count = count or 1
+    item = rex.gsub(item," [[](\\d+)\]$","")
+    
+    --cecho("\n"..item.."("..count..")\n")
+    for i = 1,tonumber(count) do
+      cnl_auto.getItem(item)
+    end
+  end
+
+end
+
+function cnl_auto.prepProcessInventory()
+  cnl_auto.clean_trig2Id = tempRegexTrigger("^(.*)$", cnl_auto.processInventory, 50)
+end
+
+function cnl_auto.clean()
+  cnl_auto.clean_cleanVars()
+  send("inventory",false)
+  send("",false)
+  cnl_auto.clean_trigId   = tempRegexTrigger("^You are carrying:",cnl_auto.prepProcessInventory,1)
+  cnl_auto.clean_timerId  = tempTimer(5,cnl_auto.clean_timeout)
+end</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>cmd</name>
+			<packageName></packageName>
+			<script>-- An untidy silken eggsack stuffed full of cmd scripts
+-- Don't drop it, you won't be able to pick up again
+
+-- help function to update cfg values
+local function setValue(key,table_ref,value)
+  if value == "on" or value == true then
+    setting = true
+  elseif value == "off" or value == false then
+    setting = false
+  end
+  local str
+  if setting then str = "&lt;ansi_green&gt;ON"
+  else str = "&lt;ansi_red&gt;OFF" end
+  table_ref[key] = setting
+  cecho("cnl_auto: &lt;red&gt;SETTING CHANGED\n")
+  cecho("cnl_auto: "..key.." "..str.."\n")
+  
+  --cnl_auto.save(
+end
+
+-- show the current settings
+function cnl_auto.cmd_displayConfig()
+    local col_cfg,col_task,col_spin,col_drop,col_junk
+    local cfg = cnl_auto.data.cfg.list
+    cecho(
+      "\n"..
+      "&lt;ansi_yellow&gt;"..
+      cnl_auto.PKG.." v"..cnl_auto.VER.."\n"..
+      "----------------------------------------\n"..
+      "Settings:\n"..
+      u.textColValue("auto",cfg.auto,nil,10).."\n"..
+      u.textColValue("....grab",cfg.grab,cfg.auto,10).."\n"..
+      u.textColValue("....task",cfg.task,cfg.auto,10).."\n"..
+      u.textColValue("....spin",cfg.spin,cfg.auto,10).."\n"..
+      u.textColValue("....drop",cfg.drop,cfg.auto,10).."\n"..
+      u.textColValue("....junk",cfg.junk,cfg.auto,10).."\n"..
+      u.textColValue("..spirit",cfg.spirit,cfg.auto,10).."\n"..
+      "\n"..
+      "&lt;ansi_yellow&gt;For usage help: auto help\n"
+    )
+end
+
+-- show usage
+function cnl_auto.cmd_displayUsage()
+  cecho([[&lt;ansi_yellow&gt;
+usage:
+
+
+  auto                                                - show current config
+  auto [on|off]                                       - master switch auto on/off
+  auto[spirit|grab|task|spin|drop|junk] [on|off]      - specified auto on/off
+  example:
+    &lt;ansi_cyan&gt;auto&lt;ansi_yellow&gt;
+    &lt;ansi_cyan&gt;auto off&lt;ansi_yellow&gt;
+    &lt;ansi_cyan&gt;autojunk on&lt;ansi_yellow&gt;
+  
+  auto[grab|task|spin|drop|junk]+ {item} {cmd}        - add item to auto-type
+    {item} - in-game handle of item
+      eg:
+        note
+        orange-potion
+    {cmd}  - command to submit to expandAlias
+      Only valid for task
+      $handle will first subst for item handles
+      $name will first subst for item name
+      
+      eg:
+        quaff $handle
+        stashshard $handle
+    example:
+      &lt;ansi_cyan&gt;autotask+ orange quaff $handle&lt;ansi_yellow&gt;
+                        (add new auto task to quaff orange by handle)
+      &lt;ansi_cyan&gt;autojunk+ teeth&lt;ansi_yellow&gt;   (add new auto junk for teeth)
+      
+  auto? {pattern}                                   - find items in any auto-type
+  auto[grab|task|spin|drop|junk]? {pattern}         - find items in auto-type
+    {pattern} - regex pattern compared to item names
+    example:
+      &lt;ansi_cyan&gt;auto? .&lt;ansi_yellow&gt;           (list all autos)
+      &lt;ansi_cyan&gt;autojunk? page&lt;ansi_yellow&gt;    (list all autojunk of "page")
+  
+  auto- {pattern}                                   - delete items in any auto-type 
+  auto[grab|task|spin|drop|junk]- {pattern}         - delete items in in auto-type
+    {pattern} - regex pattern compared to item names
+    example:
+      &lt;ansi_cyan&gt;auto- .&lt;ansi_yellow&gt;           (delete all autos)
+      &lt;ansi_cyan&gt;autojunk- page&lt;ansi_yellow&gt;    (delete all autojunk of "page")
+  
+  auto clean                                        - run autos against inventory
+  
+  If item exists in multiple auto-types it execute first match in order:
+    spirit, * tries all items *
+    task,
+    spin,
+    drop,
+    junk
+]])
+end
+
+function cnl_auto.cmd_add_cleanup()
+  cnl_auto.auto_candidate_name    = nil
+  cnl_auto.auto_candidate_handles = nil
+  cnl_auto.auto_candidate_mode    = nil
+  cnl_auto.auto_candidate_command = nil
+  
+  if cnl_auto.trig_auto_confirm   then killTrigger(cnl_auto.trig_auto_confirm)  end
+  if cnl_auto.trig_auto_cancel    then killTrigger(cnl_auto.trig_auto_cancel)   end
+  if cnl_auto.alias_auto_confirm  then killAlias(cnl_auto.alias_auto_confirm)   end
+     
+end
+
+function cnl_auto.cmd_add_confirm()
+  if matches[2] == "y" then
+    cecho("\n&lt;yellow&gt;Auto-"..cnl_auto.auto_candidate_mode.." confirmed! "..cnl_auto.auto_candidate_name.." will auto-"..cnl_auto.auto_candidate_mode..".\n")
+    
+    if cnl_auto.auto_candidate_mode == "task" then
+      cnl_auto.data[cnl_auto.auto_candidate_mode].list[cnl_auto.auto_candidate_name] = {
+        handles = cnl_auto.auto_candidate_handles,
+        command = cnl_auto.auto_candidate_command or ""
+      }
+    else
+      cnl_auto.data[cnl_auto.auto_candidate_mode].list[cnl_auto.auto_candidate_name] = 
+        cnl_auto.auto_candidate_handles
+    end
+        
+    u.saveTable(cnl_auto.data[cnl_auto.auto_candidate_mode].path,cnl_auto.data[cnl_auto.auto_candidate_mode].list)
+    local name = cnl_auto.auto_candidate_name
+    cnl_auto.cmd_add_cleanup()
+    cnl_auto.getItem(name)
+    
+  else
+    cecho("\n&lt;yellow&gt;Auto Cancelled.\n")
+  end
+  cnl_auto.cmd_add_cleanup()
+end
+
+function cnl_auto.cmd_add_name()
+  --display(matches)
+  local mode = cnl_auto.auto_candidate_mode
+  cecho("\n&lt;yellow&gt;*** WARNING ***")
+  cecho("\n   Name:"..matches[2])
+  cecho("\n   Handles:"..matches[3]:gsub(" ","-"))
+  cecho("\n&lt;yellow&gt;To auto-"..mode.." this item on pickup type: y\&lt;enter\&gt;\n")
+  
+  cnl_auto.auto_candidate_name = matches[2]:lower()
+  cnl_auto.auto_candidate_handles = matches[3]:gsub(" ","-")
+  if cnl_auto.alias_auto_confirm then killAlias(cnl_auto.alias_auto_confirm) end
+  cnl_auto.alias_auto_confirm = tempAlias("(^$|^.+$)", [[cnl_auto.cmd_add_confirm()]])
+end
+
+function cnl_auto.cmd_add_cancel()
+  cecho("\n&lt;yellow&gt;Auto"..(cnl_auto.auto_candidate_mode or "").." add cancelled. Item not found.\n")
+  cnl_auto.cmd_add_cleanup()
+end
+
+function cnl_auto.cmd_add(mode,item,command)
+  --display(mode,item,command)
+  if command and mode ~= "task" then
+    cecho("&lt;red&gt;cnl_auto: Can only specify command when addings tasks, not with spin,drop,junk!")
+    cnl_auto.cmd_displayUsage()
+    return
+  end
+  cnl_auto.cmd_add_cleanup()
+  cnl_auto.auto_candidate_mode = mode
+  cnl_auto.auto_candidate_command = command
+  
+  if comand and mode == "grab" then
+  -- find name of object on floor for grab
+  
+  -- else find name of object in inventory for other cmds
+  else
+    -- create temp triggers
+    cnl_auto.trig_auto_confirm = tempRegexTrigger("^(.*) is referred to by the words '(.*)'.$", [[cnl_auto.cmd_add_name()]], 1)
+    cnl_auto.trig_auto_cancel = tempRegexTrigger("^There[']s nobody and nothing here by that name[.]$",[[cnl_auto.cmd_add_cancel()]],1)
+    -- name item
+    send("name "..item)
+  end
+end
+
+-- find
+function cnl_auto.cmd_find(mode,pattern)
+  cecho("&lt;ansi_cyan&gt;search term:"..pattern.."\n")
+  for _,v in pairs({"grab","task","spin","drop","junk"}) do
+  
+    if not mode or mode == v then
+      for k2,v2 in spairs(cnl_auto.data[v].list,function(t,a,b) return b &gt; a end) do
+        --display(k2,item)
+        if rex.find(k2,pattern) then
+          if type(v2) == "table" then
+            cecho("auto"..v..": ["..k2.."]-&gt;["..v2.handles.."@"..v2.command.."]\n")
+          else
+            cecho("auto"..v..": ["..k2.."]-&gt;["..v2.."]\n")
+          end
+        end
+      end
+    end
+  end
+end
+
+-- delete
+function cnl_auto.cmd_delete(mode,pattern)
+  cecho("&lt;ansi_cyan&gt;search term:"..pattern.."\n")
+  for _,v in pairs({"grab","task","spin","drop","junk"}) do
+  
+    if not mode or mode == v then
+      local needsSave = false
+    
+      for k2,v2 in pairs(cnl_auto.data[v].list) do
+        --display(k2,item)
+        if rex.find(k2,pattern) then
+          
+          if type(v2) == "table" then
+            cecho("&lt;red&gt;DELETED auto"..v..": ["..k2.."]-&gt;["..v2.handles.."@"..v2.command.."]\n")
+          else
+            cecho("&lt;red&gt;DELETED auto"..v..": ["..k2.."]-&gt;["..v2.."]\n")
+          end        
+          cnl_auto.data[v].list[k2] = nil
+          needsSave = true
+        end
+      end
+      
+      if needsSave then
+        u.saveTable(cnl_auto.data[v].path,cnl_auto.data[v].list)
+      end
+    end
+  end
+  
+end
+
+-- the main cmd parsing function
+function cnl_auto.cmd(mode,args)
+  --display(mode,args)
+  local cfg = cnl_auto.data.cfg
+  -- fiik, lua
+  if mode and mode:trim() == "" then mode = nil end
+  if args and args:trim() == "" then args = nil end 
+  if mode then mode = mode:trim():lower() end
+  if args then args = args:trim():lower() end
+  
+  -- auto -- display current cfg settings
+  if not mode and not args then
+    cnl_auto.cmd_displayConfig()
+  
+  -- auto [spirit|grabtask|spin|drop|junk] {on|off}
+  elseif (not mode or rex.find(mode,"^(spirit|grab|task|spin|drop|junk)$")) and args and rex.find(args,"^(on|off)$") then
+    --display(mode,args)
+    setValue(mode or "auto",cfg.list,args)
+    u.saveTable(cfg.path,cfg.list)
+  
+  -- auto [grab|task|spin|drop|junk]+ (item_name)
+  elseif mode and rex.find(mode,"^(task|spin|drop|junk)$") and args and rex.find(args,"^[+]\\s+(.+)") then
+    local _,item,_,command = rex.match(args,"^([+])\\s+(\\S+)(\\s+(.*))?")
+    cnl_auto.cmd_add(mode,item,command)
+  
+  -- auto [task|spin|drop|junk]? (regex_partial_item_name)
+  elseif args and rex.find(args,"^[?]\\s+(.+)") then
+    cnl_auto.cmd_find(mode,rex.match(args,"find|[?]\\s+(.+)"))
+    
+  -- auto [task|spin|drop|junk]- (regex_partial_item_name)
+  elseif args and rex.find(args,"^[-]\\s+(.+)") then
+    cnl_auto.cmd_delete(mode,rex.match(args,"del|[-]\\s+(.+)"))
+    
+  elseif not mode and args == "clean" then
+    cnl_auto.clean()
+  
+  -- display usage info
+  else
+    if not args or args ~= "help" then
+      cecho("&lt;red&gt;cnl_auto: INPUT NOT UNDERSTOOD")
+    end
+    cnl_auto.cmd_displayUsage()
+  end
+end</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>handlerWheelSpin</name>
+			<packageName></packageName>
+			<script>-- auto distributes wheel wins
+function cnl_auto.handlerWheelSpin(evt,obj)
+  send("give "..obj.item.." "..obj.winner)
+end
+--u.regEvt(cnl_core.evt.wheel_spin,[[cnl_auto.handlerWheelSpin]])
+
+
+</script>
+			<eventHandlerList />
+		</Script>
+	</ScriptPackage>
+	<KeyPackage>
+		<Key isActive="no" isFolder="no">
+			<name>KEY_EMPTY</name>
+			<packageName></packageName>
+			<script></script>
+			<command></command>
+			<keyCode>-1</keyCode>
+			<keyModifier>0</keyModifier>
+		</Key>
+	</KeyPackage>
+	<HelpPackage>
+		<helpURL></helpURL>
+	</HelpPackage>
+</MudletPackage>
