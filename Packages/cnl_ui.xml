@@ -160,6 +160,24 @@ end</script>
 			</ScriptGroup>
 		</ScriptGroup>
 		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>widgets</name>
+			<packageName></packageName>
+			<script></script>
+			<eventHandlerList />
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>hud_gui</name>
+				<packageName></packageName>
+				<script></script>
+				<eventHandlerList />
+			</ScriptGroup>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>hud_txt</name>
+				<packageName></packageName>
+				<script></script>
+				<eventHandlerList />
+			</ScriptGroup>
+		</ScriptGroup>
+		<ScriptGroup isActive="yes" isFolder="yes">
 			<name>core</name>
 			<packageName></packageName>
 			<script></script>
@@ -246,7 +264,8 @@ end
       },
       e                 = {
         enable            = false,
-        layout_col        = "ansi_cyan",        
+        layout_col        = "ansi_white",
+        layout_fg         = "ansi_black",        
         dim               = 50,
         dimUnit           = "percent",        
       },
@@ -258,7 +277,8 @@ end
       },
       w                 = {
         enable            = false,
-        layout_col        = "ansi_cyan",        
+        layout_col        = "ansi_white",
+        layout_fg         = "ansi_black",        
         dim               = 50,
         dimUnit           = "percent",       
       },
@@ -345,7 +365,7 @@ function cnl_ui.displayConfig()
     "\n"..
     "enable:    "..tostring(cnl_ui.cfg.enable).."\n"..
     "show:      "..tostring(cnl_ui.cfg.layout_show).."\n"..
-    "mode:      "..tostring(cnl_ui.cfg.layout_mode).."\n"..
+    "mode:      "..tostring(cnl_ui.cfg.layout_mode).." {1|2|3}\n"..
     dispMode[cnl_ui.cfg.layout_mode].."\n"..
     "width:     "..cnl_ui.cfg.screen.mainWidthInChars.."\n"
   )
@@ -532,8 +552,48 @@ Geyser.MiniConsole.disableScrolling = Geyser.MiniConsole.disableScrolling or fun
     cfg.cons.nw.y      = 0
     cfg.cons.nw.height = ui.borderTopHeightInPx
   elseif cfg.layout_mode == 2 then
+    cfg.cons.n.x      = 0+adjx
+    cfg.cons.n.width  = ui.mainWidthInPx+ui.borderLeftWidthInPx+ui.borderRightWidthInPx-2*adjx
+    cfg.cons.n.y      = 0
+    cfg.cons.n.height = ui.borderTopHeightInPx
+    --
+    cfg.cons.e.x      = ui.borderLeftWidthInPx + ui.mainWidthInPx
+    cfg.cons.e.width  = ui.borderRightWidthInPx - adjx
+    cfg.cons.e.y      = ui.borderTopHeightInPx
+    cfg.cons.e.height = ui.mainHeightInPx  
+    --
+    cfg.cons.w.x      = 0 + adjx
+    cfg.cons.w.width  = ui.borderLeftWidthInPx - adjx
+    cfg.cons.w.y      = ui.borderTopHeightInPx
+    cfg.cons.w.height = ui.mainHeightInPx       
+    --
+    cfg.cons.s.x      = 0+adjx
+    cfg.cons.s.width  = ui.mainWidthInPx+ui.borderLeftWidthInPx+ui.borderRightWidthInPx-2*adjx
+    cfg.cons.s.y      = ui.borderTopHeightInPx + ui.mainHeightInPx
+    cfg.cons.s.height = ui.borderBottomHeightInPx
   
-  elseif cfg.layout_mode == 4 then
+  elseif cfg.layout_mode == 3 then
+    cfg.cons.n.x      = ui.borderLeftWidthInPx
+    cfg.cons.n.width  = ui.mainWidthInPx
+    cfg.cons.n.y      = 0
+    cfg.cons.n.height = ui.borderTopHeightInPx
+    --
+    cfg.cons.e.x      = ui.borderLeftWidthInPx + ui.mainWidthInPx
+    cfg.cons.e.width  = ui.borderRightWidthInPx - adjx
+    cfg.cons.e.y      = 0
+    cfg.cons.e.height = ui.mainHeightInPx + ui.borderTopHeightInPx + ui.borderBottomHeightInPx
+    --
+    cfg.cons.w.x      = 0 + adjx
+    cfg.cons.w.width  = ui.borderLeftWidthInPx - adjx
+    cfg.cons.w.y      = 0
+    cfg.cons.w.height = ui.mainHeightInPx + ui.borderTopHeightInPx + ui.borderBottomHeightInPx
+    --
+    cfg.cons.s.x      = ui.borderLeftWidthInPx
+    cfg.cons.s.width  = ui.mainWidthInPx
+    cfg.cons.s.y      = ui.borderTopHeightInPx + ui.mainHeightInPx
+    cfg.cons.s.height = ui.borderBottomHeightInPx
+    --
+  
   
   end
   
@@ -567,6 +627,12 @@ Geyser.MiniConsole.disableScrolling = Geyser.MiniConsole.disableScrolling or fun
       fontSize      = getFontSize(),
       color         = v.layout_col,
     })
+    
+    if v.layout_col then cnl_ui[k]:setColor(v.layout_col) end
+    if v.layout_fg  then cnl_ui[k]:setFgColor(v.layout_fg) end
+    cnl_ui[k]:clear()
+    cnl_ui[k]:echo([["]]..k..[["]]) 
+    
     
     --
     --cecho(cnl_ui[k].name)
