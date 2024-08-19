@@ -1,0 +1,911 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<TriggerPackage />
+	<TimerPackage>
+		<Timer isActive="no" isFolder="no" isTempTimer="no" isOffsetTimer="no">
+			<name>ui_refresh</name>
+			<script>u.raiseEvt("ui_refresh")</script>
+			<command></command>
+			<packageName></packageName>
+			<time>00:00:00.175</time>
+		</Timer>
+		<Timer isActive="yes" isFolder="no" isTempTimer="no" isOffsetTimer="no">
+			<name>KeepAlive</name>
+			<script>expandAlias("\n")</script>
+			<command></command>
+			<packageName></packageName>
+			<time>00:00:30.000</time>
+		</Timer>
+	</TimerPackage>
+	<AliasPackage>
+		<Alias isActive="yes" isFolder="no">
+			<name>ui</name>
+			<script>arg1 = matches[3]
+arg2 = matches[5]
+arg3 = matches[7]
+
+cnl_ui.cmdParse(arg1,arg2,arg3)</script>
+			<command></command>
+			<packageName></packageName>
+			<regex>^ui(\s+(\S+))?(\s+(\S+))?(\s+(\S+))?\s*</regex>
+		</Alias>
+	</AliasPackage>
+	<ActionPackage>
+		<Action isActive="no" isFolder="no" isPushButton="no" isFlatButton="no" useCustomLayout="no">
+			<name>BUTTON_EMPTY</name>
+			<packageName></packageName>
+			<script></script>
+			<css></css>
+			<commandButtonUp></commandButtonUp>
+			<commandButtonDown></commandButtonDown>
+			<icon></icon>
+			<orientation>1</orientation>
+			<location>0</location>
+			<posX>0</posX>
+			<posY>0</posY>
+			<mButtonState>1</mButtonState>
+			<sizeX>0</sizeX>
+			<sizeY>0</sizeY>
+			<buttonColumn>1</buttonColumn>
+			<buttonRotation>0</buttonRotation>
+			<buttonColor>#ffffff</buttonColor>
+		</Action>
+		<Action isActive="no" isFolder="no" isPushButton="no" isFlatButton="no" useCustomLayout="no">
+			<name>BUTTON_EMPTY</name>
+			<packageName></packageName>
+			<script></script>
+			<css></css>
+			<commandButtonUp></commandButtonUp>
+			<commandButtonDown></commandButtonDown>
+			<icon></icon>
+			<orientation>1</orientation>
+			<location>0</location>
+			<posX>0</posX>
+			<posY>0</posY>
+			<mButtonState>1</mButtonState>
+			<sizeX>0</sizeX>
+			<sizeY>0</sizeY>
+			<buttonColumn>1</buttonColumn>
+			<buttonRotation>0</buttonRotation>
+			<buttonColor>#ffffff</buttonColor>
+		</Action>
+	</ActionPackage>
+	<ScriptPackage>
+		<Script isActive="yes" isFolder="no">
+			<name>cnl_ui</name>
+			<packageName></packageName>
+			<script>--[[
+
+   ██████╗███╗   ██╗██╗             ██╗   ██╗██╗
+  ██╔════╝████╗  ██║██║             ██║   ██║██║
+  ██║     ██╔██╗ ██║██║             ██║   ██║██║
+  ██║     ██║╚██╗██║██║             ██║   ██║██║
+  ╚██████╗██║ ╚████║███████╗███████╗╚██████╔╝██║
+   ╚═════╝╚═╝  ╚═══╝╚══════╝╚══════╝ ╚═════╝ ╚═╝
+
+]]
+
+-- Init ------------------------------------------------------------------------
+cnl_ui                  = cnl_ui or {}
+cnl_ui.VER              = "2024.8.19"    
+cnl_ui.PKG              = "cnl_ui"      </script>
+			<eventHandlerList />
+		</Script>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>common</name>
+			<packageName></packageName>
+			<script>-- common/utility helper functions
+</script>
+			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>msg</name>
+				<packageName></packageName>
+				<script>function cnl_ui.msg(msg,level)
+  cecho("&lt;orange&gt;[ UI ] "..msg.."\n")
+end</script>
+				<eventHandlerList />
+			</Script>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>file</name>
+				<packageName></packageName>
+				<script>u = u or {}</script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>loadTable</name>
+					<packageName></packageName>
+					<script>function u.loadTable(path,obj,echo)
+  echo = echo == nil or echo -- default is to echo
+  
+  if io.exists(path) then
+    table.load(path, obj)
+    if echo then
+      cecho("💾&lt;green&gt;🠊&lt;reset&gt; "..path.." (read)\n")
+    end
+  else
+    if echo then
+      cecho("💾&lt;gray&gt;?&lt;reset&gt; "..path.." (not found)\n")
+    end
+  end
+end</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>saveTable</name>
+					<packageName></packageName>
+					<script>function u.saveTable(path,obj,echo)
+  echo = echo == nil or echo -- default is to echo
+
+  table.save(path,obj)
+  if echo then 
+    cecho("💾&lt;red&gt;🠈&lt;reset&gt; "..path.." (save)\n")
+  end
+end</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>getModPath</name>
+					<packageName></packageName>
+					<script>function u.getModPath(mod)
+
+  if getModulePath(mod) then
+    return getModulePath(mod):gsub("/[^/]+$","").."/"
+  else
+    return getMudletHomeDir().."/"
+  end
+  
+end</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+		</ScriptGroup>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>core</name>
+			<packageName></packageName>
+			<script></script>
+			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>cmdParse</name>
+				<packageName></packageName>
+				<script>function cnl_ui.cmdParse(arg1,arg2,arg3)
+  -- cfg                                : display config
+  if not arg1 or arg1 == "cfg" then 
+    cnl_ui.displayConfig()
+    
+  -- enable
+  elseif arg1 == "enable" or arg1 == "on" then
+    cnl_ui.enableUI()
+  -- disable
+  elseif arg1 == "disable" or arg1 == "off" then
+    cnl_ui.disableUI()
+    
+  -- reset
+  elseif arg1 == "reset" then
+    cnl_ui.resetUI()
+    
+  elseif arg1 == "show" and arg2 == "on" then
+    cnl_ui.setShowLayout(true)
+  
+  elseif arg1 == "show" and arg2 == "off" then
+    cnl_ui.setShowLayout(false)
+    
+  -- mode
+  elseif arg1 == "mode" and rex.match(arg2 or "","1|2|3") then
+    cnl_ui.setModeLayout(arg2)
+      
+  -- turn border on 
+  elseif rex.find(arg1,"^(n|e|s|w)$") and arg2 == "on" then
+    cnl_ui.enableBorder(arg1)
+    
+  -- turn border off
+  elseif rex.find(arg1,"^(n|e|s|w)$") and arg2 == "off" then    
+    cnl_ui.disableBorder(arg1)
+    
+  elseif rex.find(arg1,"^(e|w|)$") and rex.find(arg2 or "","^[0-9]+$") then
+    cnl_ui.setWidthBorder(arg1,tonumber(arg2))
+    
+  -- set width
+  elseif arg1 == "width" and rex.find(arg2 or "","^[0-9]+$") then
+    cnl_ui.setWidthLayout(tonumber(arg2))
+    
+    
+  -- ?                                  : display help on ? or non-parsed input
+  else
+    if arg1 ~= "?" then cecho("&lt;red&gt;Invalid command: ui "..(arg1 or "").." "..(arg2 or "").." "..(arg3 or "")) end
+    cnl_ui.displayHelp()
+  end
+end
+
+</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>defaultConfig</name>
+				<packageName></packageName>
+				<script>function cnl_ui.defaultConfig()
+  return {
+    enable           = false,           -- cnl_ui is on or off
+    layout_mode      = 1,
+    layout_show      = false,
+    screen           = {
+      mainWidthInChars  = 80,             -- width in chars of main window 80,100,120 etc
+      --font              = "Jetbrains Mono",
+      font              = "Cascadia Mono Light",
+      font_size         = 14,
+      bgR               = 0,
+      bgG               = 0,
+      bgB               = 0,
+      bgT               = 0,
+    },
+    cons               = {
+      n                 = {
+        enable            = false,
+        layout_col        = "ansi_cyan",
+        dim               = 5,
+        dimUnit           = "row",
+      },
+      e                 = {
+        enable            = false,
+        layout_col        = "ansi_cyan",        
+        dim               = 50,
+        dimUnit           = "percent",        
+      },
+      s                 = {
+        enable            = false,
+        layout_col        = "ansi_cyan",        
+        dim               = 5,
+        dimUnit           = "row",        
+      },
+      w                 = {
+        enable            = false,
+        layout_col        = "ansi_cyan",        
+        dim               = 50,
+        dimUnit           = "percent",       
+      },
+      ne                = {
+        enable            = false,
+        layout_col        = "ansi_magenta",        
+      },
+      se                = {
+        enable            = false,
+        layout_col        = "ansi_magenta",        
+      },
+      sw                = {
+        enable            = false,
+        layout_col        = "ansi_magenta",        
+      },
+      nw                = {
+        enable            = false,
+        layout_col        = "ansi_magenta",        
+      },
+    },
+  }
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>displayConfig</name>
+				<packageName></packageName>
+				<script>local dispMode = {
+  [1] = [[
+    +--+----+--+
+    |NW|  N |NE|
+    +--+----+--|
+    |  |    |  |
+    |W |main| E|
+    |  |    |  |
+    +--+----+--+
+    |SW|  S |SE|
+    +--+----+--+
+]],
+  [2] = [[
+    +----------+
+    |     N    |
+    +--+----+--+
+    |  |    |  |
+    |W |main| E|
+    |  |    |  |
+    +--+----+--+
+    |     S    |
+    +----------+
+]],
+  [3] = [[
+    +--+----+--+
+    |  |  N |  |
+    +  +----+  +
+    |  |    |  |
+    |W |main| E|
+    |  |    |  |
+    +  +----+  +
+    |  |    |  |
+    +--+----+--+  
+]],}
+
+
+function cnl_ui.displayConfig()
+  local cfg       = cnl_ui.cfg
+  local cfgScreen = cfg.screen
+  local cfgWidth  = cfgScreen.mainWidthInChars
+  
+  local sline = ""
+  for i = 1,cfgWidth do
+    if math.mod(i,10) == 0 then
+      sline = sline..math.mod(i/10,10)
+    else
+      sline = sline .."="
+    end
+  end
+
+  cecho(
+    "\n"..
+    "&lt;ansi_yellow&gt;"..
+    cnl_ui.PKG.." v"..cnl_ui.VER.."\n"..
+    sline.." \n"..
+    "Settings:\n"..
+    "\n"..
+    "enable:    "..tostring(cnl_ui.cfg.enable).."\n"..
+    "show:      "..tostring(cnl_ui.cfg.layout_show).."\n"..
+    "mode:      "..tostring(cnl_ui.cfg.layout_mode).."\n"..
+    dispMode[cnl_ui.cfg.layout_mode].."\n"..
+    "width:     "..cnl_ui.cfg.screen.mainWidthInChars.."\n"
+  )
+  for k,v in pairs(cnl_ui.cfg) do
+  end
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>displayHelp</name>
+				<packageName></packageName>
+				<script>function cnl_ui.displayHelp()
+  cecho(
+    "\n"..
+    "&lt;ansi_yellow&gt;"..
+    cnl_ui.PKG.." v"..cnl_ui.VER.."\n"..
+    "----------------------------------------\n"..
+    "Commands:\n"..
+    "?                      help\n"..
+    "\n"..
+    "cfg                    current config\n"..
+    "reset                  reset config\n"..
+    "\n"..
+    "enable                 enable UI\n"..
+    "disable                disable UI\n"..
+    "\n"..
+    "show {on|off}          show layout\n"..
+    "mode {1|2|3}           set layout mode\n"..
+    "width {col} [force]    set width of main screen in # of columns\n"..
+    "\n"
+  )  
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>loadConfig</name>
+				<packageName></packageName>
+				<script>function cnl_ui.loadConfig()
+  cnl_ui.cfg = cnl_ui.cfg or cnl_ui.defaultConfig()
+  u.loadTable(cnl_ui.cfg_path,cnl_ui.cfg)
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>saveConfig</name>
+				<packageName></packageName>
+				<script>function cnl_ui.saveConfig()
+  u.saveTable(cnl_ui.cfg_path,cnl_ui.cfg)
+end</script>
+				<eventHandlerList />
+			</Script>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Layout</name>
+				<packageName></packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>init</name>
+					<packageName></packageName>
+					<script>-- future release function
+Geyser.MiniConsole.disableScrolling = Geyser.MiniConsole.disableScrolling or function() end
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>draw</name>
+					<packageName></packageName>
+					<script>function cnl_ui.drawLayout()
+  local ui = cnl_ui
+  local cfg = ui.cfg
+
+
+  -- return if not enabled
+  if not cfg.enable then return end
+  
+  --
+  ui.setScreen(cnl_ui.cfg.screen)
+  
+  ui.charWidthInPx, ui.charHeightInPx   = calcFontSize() 
+  ui.winWidthInPx,  ui.winHeightInPx    = getMainWindowSize()
+  
+  setWindowWrap(cfg.screen.mainWidthInChars)
+  ui.mainWidthInPx                      = cfg.screen.mainWidthInChars*ui.charWidthInPx
+  
+  --
+  local hAvail = ui.winWidthInPx - ui.mainWidthInPx
+  local vAvail = ui.winHeightInPx
+  
+  if cfg.cons.w.enable then
+    if cfg.cons.w.dimUnit == "percent" then
+      ui.borderLeftWidthInPx = math.floor(math.max(0,cfg.cons.w.dim*hAvail/100))
+    end
+  else
+    ui.borderLeftWidthInPx = 0
+  end
+  
+  if cfg.cons.e.enable then
+    if cfg.cons.e.dimUnit == "percent" then
+      ui.borderRightWidthInPx = math.min(
+        math.floor(math.max(0,cfg.cons.e.dim*hAvail/100)),
+        hAvail - ui.borderLeftWidthInPx
+      )
+    end
+  else
+    ui.borderRightWidthInPx = 0
+  end
+  
+  if cfg.cons.n.enable then
+    if cfg.cons.n.dimUnit == "row" then
+      ui.borderTopHeightInPx = ui.charHeightInPx*cfg.cons.n.dim
+    end
+  else
+    ui.borderTopHeightInPx = 0
+  end
+  
+  if cfg.cons.s.enable then
+    if cfg.cons.s.dimUnit == "row" then
+      ui.borderBottomHeightInPx = ui.charHeightInPx*cfg.cons.s.dim
+    end
+  else
+    ui.borderBottomHeightInPx = 0
+  end
+  
+  ui.mainHeightInPx = ui.winHeightInPx - ui.borderTopHeightInPx - ui.borderBottomHeightInPx
+  
+  setBorderSizes(ui.borderTopHeightInPx, ui.borderRightWidthInPx, ui.borderBottomHeightInPx, ui.borderLeftWidthInPx)
+  disableScrollBar()
+  
+  --[[
+    +--+----+--+    +----------+    +--+----+--+
+    |NW|  N |NE|    |     N    |    |  |  N |  |
+    +--+----+--|    +--+----+--+    +  +----+  +
+    |  |    |  |    |  |    |  |    |  |    |  |
+    |W |main| E|    |W |main| E|    |W |main| E|
+    |  |    |  |    |  |    |  |    |  |    |  |
+    +--+----+--+    +--+----+--+    +  +----+  +
+    |SW|  S |SE|    |     S    |    |  |    |  |
+    +--+----+--+    +----------+    +--+----+--+
+    
+    mode 1          mode 2          mode 3
+  ]]
+  
+  local adjx = ui.borderLeftWidthInPx - math.floor(ui.borderLeftWidthInPx / ui.charWidthInPx)*ui.charWidthInPx
+  
+  
+  if cfg.layout_mode == 1 then
+    cfg.cons.n.x      = ui.borderLeftWidthInPx
+    cfg.cons.n.width  = ui.mainWidthInPx
+    cfg.cons.n.y      = 0
+    cfg.cons.n.height = ui.borderTopHeightInPx
+    --
+    cfg.cons.e.x      = ui.borderLeftWidthInPx + ui.mainWidthInPx
+    cfg.cons.e.width  = ui.borderRightWidthInPx - adjx
+    cfg.cons.e.y      = ui.borderTopHeightInPx
+    cfg.cons.e.height = ui.mainHeightInPx  
+    --
+    cfg.cons.w.x      = 0 + adjx
+    cfg.cons.w.width  = ui.borderLeftWidthInPx - adjx
+    cfg.cons.w.y      = ui.borderTopHeightInPx
+    cfg.cons.w.height = ui.mainHeightInPx       
+    --
+    cfg.cons.s.x      = ui.borderLeftWidthInPx
+    cfg.cons.s.width  = ui.mainWidthInPx
+    cfg.cons.s.y      = ui.borderTopHeightInPx + ui.mainHeightInPx
+    cfg.cons.s.height = ui.borderBottomHeightInPx
+    --
+    cfg.cons.ne.x      = ui.borderLeftWidthInPx + ui.mainWidthInPx
+    cfg.cons.ne.width  = ui.borderRightWidthInPx - adjx
+    cfg.cons.ne.y      = 0
+    cfg.cons.ne.height = ui.borderTopHeightInPx    
+    --
+    cfg.cons.se.x      = ui.borderLeftWidthInPx + ui.mainWidthInPx
+    cfg.cons.se.width  = ui.borderRightWidthInPx - adjx
+    cfg.cons.se.y      = ui.borderTopHeightInPx + ui.mainHeightInPx
+    cfg.cons.se.height = ui.borderBottomHeightInPx
+    
+    cfg.cons.sw.x      = 0 + adjx
+    cfg.cons.sw.width  = ui.borderLeftWidthInPx - adjx
+    cfg.cons.sw.y      = ui.borderTopHeightInPx + ui.mainHeightInPx
+    cfg.cons.sw.height = ui.borderBottomHeightInPx
+    --
+    cfg.cons.nw.x      = 0 + adjx
+    cfg.cons.nw.width  = ui.borderLeftWidthInPx - adjx
+    cfg.cons.nw.y      = 0
+    cfg.cons.nw.height = ui.borderTopHeightInPx
+  elseif cfg.layout_mode == 2 then
+  
+  elseif cfg.layout_mode == 4 then
+  
+  end
+  
+  if cfg.layout_mode == 1 and cfg.cons.n.enable and cfg.cons.w.enable then
+    cfg.cons.nw.enable = true
+  else
+    cfg.cons.nw.enable = false
+  end
+  if cfg.layout_mode == 1 and cfg.cons.n.enable and cfg.cons.e.enable then
+    cfg.cons.ne.enable = true
+  else
+    cfg.cons.ne.enable = false
+  end
+  if cfg.layout_mode == 1 and cfg.cons.s.enable and cfg.cons.w.enable then
+    cfg.cons.sw.enable = true
+  else
+    cfg.cons.sw.enable = false
+  end
+  if cfg.layout_mode == 1 and cfg.cons.s.enable and cfg.cons.e.enable then
+    cfg.cons.se.enable = true
+  else
+    cfg.cons.se.enable = false
+  end
+
+
+  for k,v in pairs(cfg.cons) do
+    -- ensure consoles exist 
+    cnl_ui[k] = cnl_ui[k] or Geyser.MiniConsole:new({
+      name          = "cnl_ui_"..k,
+      font          = getFont(),
+      fontSize      = getFontSize(),
+      color         = v.layout_col,
+    })
+    
+    --
+    --cecho(cnl_ui[k].name)
+    if v.enable then cnl_ui[k]:show() else cnl_ui[k]:hide() end
+    if v.x and v.y then 
+      moveWindow(cnl_ui[k].name,v.x,v.y)
+      --cecho([[moveWindow("]]..cnl_ui[k].name..[[",]]..v.x..","..v.y..")")
+    end
+    if v.width and v.height then
+      resizeWindow(cnl_ui[k].name,v.width,v.height)
+      --cecho([[resizeWindow("]]..cnl_ui[k].name..[[",]]..v.width..","..v.height..")")
+    end
+    
+    cnl_ui[k]:disableScrollBar()
+    cnl_ui[k]:disableScrolling()
+
+  end
+end</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>setShow</name>
+					<packageName></packageName>
+					<script>function cnl_ui.setShowLayout(enabled)
+  cnl_ui.cfg.layout_show = enabled
+  cnl_ui.saveConfig()
+  cnl_ui.drawFullUI()
+  cnl_ui.msg("show set to "..tostring(enabled))
+end</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>setMode</name>
+					<packageName></packageName>
+					<script>function cnl_ui.setModeLayout(mode)
+  cnl_ui.cfg.layout_mode = tonumber(mode)
+  cnl_ui.saveConfig()
+  cnl_ui.drawFullUI()
+  cnl_ui.msg("mode set to "..mode)
+end</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>setWidth</name>
+					<packageName></packageName>
+					<script>function cnl_ui.setWidthLayout(px)
+  cnl_ui.cfg.screen.mainWidthInChars = tonumber(px)
+  cnl_ui.saveConfig()
+  cnl_ui.drawFullUI()
+  cnl_ui.msg("width set to "..px)
+end</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Border</name>
+				<packageName></packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>disable</name>
+					<packageName></packageName>
+					<script>function cnl_ui.disableBorder(id)
+  if
+    not cnl_ui.cfg.cons[id].enable
+  then
+    cnl_ui.msg("border "..id.." already disabled")
+  else
+    cnl_ui.msg("border "..id.." disabled")
+    cnl_ui.cfg.cons[id].enable = false
+    cnl_ui.drawFullUI()   
+  end
+end</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>enable</name>
+					<packageName></packageName>
+					<script>function cnl_ui.enableBorder(id)
+  display(id)
+  if
+    cnl_ui.cfg.cons[id].enable
+  then
+    cnl_ui.msg("border "..id.." already enabled")
+  else
+    cnl_ui.msg("border "..id.." enabled")
+    cnl_ui.cfg.cons[id].enable = true
+    cnl_ui.drawFullUI()
+  end
+end</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>setWidth</name>
+					<packageName></packageName>
+					<script>function cnl_ui.setWidthBorder(border,per)
+  per = math.max(math.min(per,100),0)
+  
+  local altBorder = "w"
+  if border == "w" then altBorder = "e" end
+  
+  cnl_ui.cfg.cons[border].dim = per
+  cnl_ui.cfg.cons[altBorder].dim = 100 - per
+  cnl_ui.saveConfig()
+  cnl_ui.drawFullUI()
+  cnl_ui.msg("border width "..border.." set to "..per)
+  cnl_ui.msg("border width "..altBorder.." set to "..(100-per))
+end</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Screen</name>
+				<packageName></packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>get</name>
+					<packageName></packageName>
+					<script>function cnl_ui.getScreen()
+  local cfg = {
+    font              = getFont(),
+    font_size         = getFontSize(),
+    n                 = getBorderTop(),
+    w                 = getBorderLeft(),
+    e                 = getBorderRight(),
+    s                 = getBorderBottom(),
+    bgR,bgG,bgB,bgT   = getBackgroundColor(), 
+    mainWidthInChars  = getWindowWrap(),
+  }
+  return cfg
+end</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>set</name>
+					<packageName></packageName>
+					<script>function cnl_ui.setScreen(cfg)
+  setFont(cfg.font)
+  setFontSize(cfg.font_size)
+  setBackgroundColor(0,0,0)
+
+  if cfg.n then setBorderTop(cfg.n) end
+  if cfg.e then setBorderRight(cfg.e) end
+  if cfg.s then setBorderBottom(cfg.s) end
+  if cfg.w then setBorderLeft(cfg.w) end
+
+  setBackgroundColor(
+    cfg.bgR or 0,
+    cfg.bgG or 0,
+    cfg.bgB or 0,
+    cfg.bgT or 255
+  )
+  setWindowWrap(cfg.mainWidthInChars)  
+end</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>UI</name>
+				<packageName></packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>draw</name>
+					<packageName></packageName>
+					<script>function cnl_ui.drawUI()
+end</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>drawFull</name>
+					<packageName></packageName>
+					<script>function cnl_ui.drawFullUI()
+  cnl_ui.drawLayout()
+  cnl_ui.drawLayout()  
+  cnl_ui.drawUI()
+end
+
+registerAnonymousEventHandler("sysWindowResizeEvent",cnl_ui.drawFullUI)</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>disable</name>
+					<packageName></packageName>
+					<script>function cnl_ui.disableUI()
+  if
+    not cnl_ui.cfg.enable
+  then
+    cnl_ui.msg("ui is already disabled")
+  else
+    cnl_ui.msg("ui disabled")
+    cnl_ui.cfg.enable = false
+    cnl_ui.setScreen(cnl_ui.cfg.pre_screen)
+    for _,v in pairs({"n","e","s","w","ne","se","sw","nw"}) do
+      if cnl_ui[v] and cnl_ui[v].hide then cnl_ui[v]:hide() end
+    end
+    cnl_ui.saveConfig()
+    cnl_ui.drawFullUI()
+  end
+end</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>enable</name>
+					<packageName></packageName>
+					<script>function cnl_ui.enableUI()
+  if
+    cnl_ui.cfg.enable
+  then
+    cnl_ui.msg("ui is already enabled")
+  else
+    cnl_ui.msg("ui enabled")
+    cnl_ui.cfg.enable = true
+    cnl_ui.cfg.pre_screen = cnl_ui.getScreen()
+    cnl_ui.saveConfig()
+    cnl_ui.drawFullUI()
+  end
+end</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>reset</name>
+					<packageName></packageName>
+					<script>function cnl_ui.resetUI()
+  cnl_ui.disableUI()
+  cnl_ui.cfg = cnl_ui.defaultConfig()
+  cnl_ui.saveConfig()
+end</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+		</ScriptGroup>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>_onLoad</name>
+			<packageName></packageName>
+			<script>-- !!! NOTE:
+-- This folder must be the LAST FOLDER listed in the cnl_ui module folder to
+-- ensure that its contents are run AFTER the rest of the module is fully loaded.</script>
+			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>init</name>
+				<packageName></packageName>
+				<script>--[[
+
+  Description:
+  
+    Runs (last) on load and all script refreshes (ie, save)
+  
+    Sets:
+      cnl_ui.cfg_path
+      
+]]
+
+
+-- Filepath Base -----------------------
+-- Determine module base path, create directory if needed.
+local filepathBase      = u.getModPath(cnl_ui.PKG).."/"..cnl_ui.PKG.."%s"
+if not io.exists(filepathBase:format("/")) then
+  lfs.mkdir(filepathBase:format(""))
+end
+
+-- Config ------------------------------
+-- Determine filepath for cfg file, load if not loaded.
+cnl_ui.cfg_path         = cnl_ui.cfg_path or filepathBase:format("/"..cnl_ui.PKG..".cfg")
+if not cnl_ui.cfg then cnl_ui.loadConfig() end
+
+-- Draw this b -------------------------
+cnl_ui.drawFullUI()</script>
+				<eventHandlerList />
+			</Script>
+		</ScriptGroup>
+		<Script isActive="yes" isFolder="no">
+			<name>README</name>
+			<packageName></packageName>
+			<script>--[[
+  Format conventions -------------------------------------------------------
+  
+  cnl_ui            -- module container
+  
+  cnl_ui.CONSTANT   -- global module constants
+  
+  cnl_ui.cfg        -- primary variable
+  cnl_ui.cfg_path   -- sub variable
+  cnl_ui.loadCfg    -- function (verbVariable)
+  
+  https://en.wikipedia.org/wiki/Box_Drawing
+  https://en.wikipedia.org/wiki/Block_Elements
+┏┳┓
+┣╋┫╍╍╍╍  ─━│┃
+┗┻┛
+ ╏
+ ╏
+ ╏
+ ╭╮╭╭╮╭
+ ╰╯╯╯╰╯
+ ╲╱
+╲╱╲╱
+            ┃
+ █           ┃
+██          ██━━
+█
+
+
+    ┏┻┓╱     ╭╮ ╱
+    ┗━┛
+ 
+  
+]]</script>
+			<eventHandlerList />
+		</Script>
+	</ScriptPackage>
+	<KeyPackage>
+		<Key isActive="yes" isFolder="no">
+			<name>/</name>
+			<packageName></packageName>
+			<script>cnl_ui.switchSide()</script>
+			<command></command>
+			<keyCode>47</keyCode>
+			<keyModifier>67108864</keyModifier>
+		</Key>
+		<Key isActive="yes" isFolder="no">
+			<name>&gt;</name>
+			<packageName></packageName>
+			<script>cnl_ui.hud.tabRight()</script>
+			<command></command>
+			<keyCode>46</keyCode>
+			<keyModifier>67108864</keyModifier>
+		</Key>
+		<Key isActive="yes" isFolder="no">
+			<name>&lt;</name>
+			<packageName></packageName>
+			<script>cnl_ui.hud.tabLeft()</script>
+			<command></command>
+			<keyCode>44</keyCode>
+			<keyModifier>67108864</keyModifier>
+		</Key>
+	</KeyPackage>
+	<HelpPackage>
+		<helpURL></helpURL>
+	</HelpPackage>
+</MudletPackage>
