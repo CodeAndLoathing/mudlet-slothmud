@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<TriggerPackage>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>OnConnect enable msdp</name>
+			<script>SlothMap.enableMSDP()</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>Welcome to the land of SlothMUD. May your visit here be... Interesting.</string>
+				<string>Reconnecting.</string>
+				<string>Previous connection terminated, press return to reconnect...Reconnecting.</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>2</integer>
+				<integer>2</integer>
+				<integer>2</integer>
+			</regexCodePropertyList>
+		</Trigger>
+	</TriggerPackage>
+	<TimerPackage />
+	<AliasPackage />
+	<ActionPackage />
+	<ScriptPackage>
+		<Script isActive="yes" isFolder="no">
+			<name>init</name>
+			<packageName></packageName>
+			<script>-- create a "namespace" for our package/module
+SlothMap = SlothMap or {}
+
+mudlet = mudlet or {};
+mudlet.mapper_script = true -- let mudlet know we've got a mapper script</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>enableMSDP</name>
+			<packageName></packageName>
+			<script>function SlothMap.enableMSDP()
+  sendMSDP("REPORT","CHARACTER_LOCATION")
+end
+
+if msdp and not msdp.CHARACTER_LOCATION then SlothMap.enableMSDP() end</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>getCurrentRoomNum</name>
+			<packageName></packageName>
+			<script>function SlothMap.getCurrentRoomNum()
+	return tonumber(msdp.CHARACTER_LOCATION.ROOM.VNUM)
+end</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>setRoom</name>
+			<packageName></packageName>
+			<script>function SlothMap.setRoom()
+	local roomNum = tonumber(msdp.CHARACTER_LOCATION.ROOM.VNUM)
+	centerview(roomNum)
+end
+
+if not SlothMap.handlerId then
+  SlothMap.handlerId = registerAnonymousEventHandler("msdp.CHARACTER_LOCATION",SlothMap.setRoom)
+end</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>continents</name>
+			<packageName></packageName>
+			<script>SlothMap.continents = SlothMap.continents or {
+  ['1'] = 'Thordfalan [BH]',
+  ['2'] = 'Thule [AH]',
+  ['3'] = 'The Island [IS]',
+  ['4'] = 'Niebelung [SS]',
+  ['5'] = 'Lyme [LY]',
+  ['7'] = 'Valkyre [VK]',
+  ['12'] = 'Euridyce [EU]',
+}</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>doSpeedWalk</name>
+			<packageName></packageName>
+			<script>-- implement doSpeedWalk
+function doSpeedWalk()
+  local sep = getCommandSeparator()
+
+	local run = ""
+	
+	for i, dir in pairs(speedWalkDir) do
+    local roomNum = tonumber(speedWalkPath[i])
+    local currentRoom
+    if i ~= 1 then
+      currentRoom = tonumber(speedWalkPath[i - 1])
+    else
+      currentRoom = SlothMap.getCurrentRoomNum()
+    end
+		
+    -- Work with doors --
+    local doors = getDoors(currentRoom)
+		for doorDir, doorType in pairs(doors) do
+			if doorDir == dir then
+				local doorName = getRoomUserData(currentRoom, "door_" .. doorDir)
+        if doorType == 3 then
+          run = run .. 'unlock ' .. doorDir .. sep
+          run = run .. 'pick ' .. doorDir .. sep
+          run = run .. 'pick ' .. doorDir .. sep
+        end
+				run = run .. 'open ' .. doorName .. ' ' .. doorDir .. sep
+			end
+		end
+		run = run .. dir ..sep
+	end
+	
+	send(run)
+end
+</script>
+			<eventHandlerList />
+		</Script>
+		<Script isActive="yes" isFolder="no">
+			<name>README</name>
+			<packageName></packageName>
+			<script>--[[
+  This script was written by SlothMUD player Bandit / Shatterhand with some
+  minor tweaks from Fuli to make sharing easier.
+]]</script>
+			<eventHandlerList />
+		</Script>
+	</ScriptPackage>
+	<KeyPackage />
+	<HelpPackage>
+		<helpURL></helpURL>
+	</HelpPackage>
+</MudletPackage>
